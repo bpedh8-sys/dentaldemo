@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumire Dental Studio — Where Smiles Find Their Light</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="dns-prefetch" href="https://images.unsplash.com">
+<link rel="preconnect" href="https://cdn.builder.io">
+<link rel="dns-prefetch" href="https://cdn.builder.io">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1606265752439-1f18756aa8ed?auto=format&fit=crop&w=800&q=80" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root {
+    --bg: #F5F1EA; --bg-2: #EDE6D8; --bg-3: #E8DFCC; --bg-dark: #0E2A26; --bg-dark-2: #143832;
+    --fg: #1A2F2A; --fg-light: #F5F1EA; --muted: #6B7F75; --muted-dark: #8FA39A;
+    --accent: #C9A876; --accent-dark: #A8895C; --accent-2: #E8956B; --accent-3: #5B8A7A;
+    --card: #FFFFFF; --border: #E5DFD3; --border-dark: rgba(245, 241, 234, 0.12);
+    --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+    --shadow-soft: 0 8px 20px -5px rgba(14, 42, 38, 0.08); --shadow-premium: 0 15px 35px -10px rgba(14, 42, 38, 0.15);
+  }
+  * { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; margin: 0; padding: 0; box-sizing: border-box; }
+  .font-display { font-family: 'Fraunces', serif; }
+  .fa-solid, .fa-brands, .fas, .fab, .far { line-height: 1; }
+  html { scroll-padding-top: 80px; } 
+  body { background: var(--bg); color: var(--fg); overflow-x: hidden; cursor: none; -webkit-text-size-adjust: 100%; text-rendering: optimizeLegibility; }
+  img, svg, video { transform: translateZ(0); }
+  a, button { transition-timing-function: var(--ease-smooth); }
+  * { scrollbar-width: none; -ms-overflow-style: none; }
+  *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  ::selection { background: var(--accent); color: var(--bg); }
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
+  .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.3s var(--ease-smooth), width 0.3s, height 0.3s, background 0.3s; will-change: transform; }
+  .cursor-dot { width: 8px; height: 8px; background: var(--accent); }
+  .cursor-outline { width: 40px; height: 40px; border: 1.5px solid var(--accent); }
+  .cursor-outline.hover { width: 80px; height: 80px; background: rgba(201, 168, 118, 0.1); border-color: transparent; }
+  .cursor-dot.hover { width: 4px; height: 4px; background: var(--bg-dark); }
+  @media (max-width: 1024px) { body { cursor: auto; } .cursor-dot, .cursor-outline { display: none; } }
+  .preloader { position: fixed; inset: 0; z-index: 10000; background: var(--bg-dark); display: flex; align-items: center; justify-content: center; transition: opacity 0.8s var(--ease-smooth), visibility 0.8s var(--ease-smooth); }
+  .preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .preloader-text { font-family: 'Fraunces', serif; font-size: 4rem; color: var(--fg-light); overflow: hidden; position: relative; }
+  .preloader-text span { display: inline-block; transform: translateY(100%); animation: preloaderUp 0.8s var(--ease-smooth) forwards; }
+  @keyframes preloaderUp { to { transform: translateY(0); } }
+  .preloader-bar { position: absolute; bottom: 0; left: 0; height: 2px; background: var(--accent); width: 0; animation: preloaderBar 1.5s var(--ease-smooth) forwards; }
+  @keyframes preloaderBar { to { width: 100%; } }
+  
+  /* Optimized Backgrounds for Zero Lag */
+  .mesh-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; transform: translateZ(0); background: radial-gradient(at 15% 25%, rgba(201, 168, 118, 0.18) 0px, transparent 45%), radial-gradient(at 85% 15%, rgba(232, 149, 107, 0.12) 0px, transparent 50%), radial-gradient(at 70% 85%, rgba(91, 138, 122, 0.15) 0px, transparent 50%); }
+  .mesh-dark { position: absolute; inset: 0; z-index: 0; pointer-events: none; transform: translateZ(0); background: radial-gradient(at 20% 30%, rgba(201, 168, 118, 0.15) 0px, transparent 45%), radial-gradient(at 80% 70%, rgba(91, 138, 122, 0.18) 0px, transparent 50%); }
+  .noise::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E"); opacity: 0.04; pointer-events: none; transform: translateZ(0); }
+
+  .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); z-index: 100; transform: scaleX(0); transform-origin: left; will-change: transform; }
+  .nav-blur { background: rgba(245, 241, 234, 0.95); border-bottom: 1px solid var(--border); transition: background 0.5s var(--ease-smooth), padding 0.5s var(--ease-smooth), box-shadow 0.5s ease; transform: translateZ(0); }
+  .nav-scrolled { background: rgba(245, 241, 234, 0.98); padding: 0.5rem 0; box-shadow: 0 4px 30px rgba(14, 42, 38, 0.06); }
+  .nav-link { position: relative; transition: color 0.3s; }
+  .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.4s var(--ease-smooth); }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+  .nav-link:hover { color: var(--accent-dark); }
+  .botanical-deco { position: absolute; pointer-events: none; z-index: 0; opacity: 0.4; will-change: transform; animation: sway 8s ease-in-out infinite; transform: translateZ(0); }
+  .botanical-deco.reverse { animation: sway-rev 10s ease-in-out infinite; }
+  @keyframes sway { 0%, 100% { transform: rotate(0deg) translateY(0); } 50% { transform: rotate(4deg) translateY(-10px); } }
+  @keyframes sway-rev { 0%, 100% { transform: rotate(0deg) translateY(0); } 50% { transform: rotate(-5deg) translateY(10px); } }
+  @keyframes float-1 { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(2deg); } }
+  @keyframes float-2 { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(-3deg); } }
+  @keyframes float-3 { 0%,100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(10px) translateX(8px); } }
+  @keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 0.8; } 100% { transform: scale(1.6); opacity: 0; } }
+  @keyframes rotate-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes morph-blob { 0%,100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; } 50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; } }
+  .float-1 { animation: float-1 6s ease-in-out infinite; } .float-2 { animation: float-2 7s ease-in-out infinite; } .float-3 { animation: float-3 5s ease-in-out infinite; }
+  .rotate-slow { animation: rotate-slow 30s linear infinite; } .morph-blob { animation: morph-blob 12s ease-in-out infinite; }
+  .pulse-dot { position: relative; } .pulse-dot::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--accent-3); animation: pulse-ring 2s ease-out infinite; }
+  .reveal-text { overflow: hidden; display: inline-block; }
+  .reveal-text span { display: inline-block; transform: translateY(100%); transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform; }
+  .reveal-text.in-view span { transform: translateY(0); }
+  .reveal-text.delay-1 span { transition-delay: 0.1s; } .reveal-text.delay-2 span { transition-delay: 0.2s; } .reveal-text.delay-3 span { transition-delay: 0.3s; }
+  .img-reveal { position: relative; overflow: hidden; }
+  .img-reveal img { transform: scale(1.3); transition: transform 1.5s var(--ease-smooth); will-change: transform; }
+  .img-reveal::after { content: ''; position: absolute; inset: 0; background: var(--bg-dark); transform: scaleX(1); transform-origin: right; transition: transform 1.2s var(--ease-smooth); z-index: 5; pointer-events: none; will-change: transform; }
+  .img-reveal.in-view::after { transform: scaleX(0); }
+  .img-reveal.in-view img { transform: scale(1); }
+  .hero-img-reveal { position: relative; overflow: hidden; }
+  .hero-img-reveal .hero-slider-container { transform: scale(1.3); transition: transform 1.5s var(--ease-smooth); will-change: transform; }
+  .hero-img-reveal::after { content: ''; position: absolute; inset: 0; background: var(--bg-dark); transform: scaleX(1); transform-origin: right; transition: transform 1.2s var(--ease-smooth); z-index: 5; pointer-events: none; will-change: transform; }
+  .hero-img-reveal.in-view::after { transform: scaleX(0); }
+  .hero-img-reveal.in-view .hero-slider-container { transform: scale(1); }
+  .hero-frame-text > * { opacity: 0; transform: translateY(30px); transition: opacity 1s var(--ease-smooth), transform 1s var(--ease-smooth); will-change: opacity, transform; }
+  .hero-frame-text > *:nth-child(1) { transition-delay: 0.8s; } .hero-frame-text > *:nth-child(2) { transition-delay: 1s; }
+  #heroImageFrame.in-view .hero-frame-text > * { opacity: 1; transform: translateY(0); }
+  .hero-slider-container { position: absolute; inset: 0; z-index: 0; }
+  .hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transform: scale(1); transition: opacity 2s var(--ease-smooth), transform 6s linear; will-change: opacity, transform; pointer-events: none; }
+  .hero-slide.active { opacity: 1; transform: scale(1.08); z-index: 1; }
+  .reveal { opacity: 0; transform: translateY(60px); transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); will-change: opacity, transform; }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.15s; } .reveal-delay-2 { transition-delay: 0.3s; } .reveal-delay-3 { transition-delay: 0.45s; } .reveal-delay-4 { transition-delay: 0.6s; }
+  .text-image-tag { display: inline-block; font-style: italic; font-weight: 500; padding: 0 8px; border-radius: 8px; color: #A8895C; -webkit-text-fill-color: #A8895C; background: linear-gradient(135deg, rgba(232, 149, 107, 0.25), rgba(201, 168, 118, 0.35)); box-shadow: 0 4px 12px rgba(232, 149, 107, 0.15); transform: rotate(-2deg); margin: 0 4px; }
+  .btn-primary { background: var(--bg-dark); color: var(--fg-light); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 12px; transition: all 0.4s var(--ease-smooth); position: relative; overflow: hidden; border: 1px solid var(--bg-dark); z-index: 1; box-shadow: 0 4px 15px rgba(14, 42, 38, 0.1); }
+  .btn-primary::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--accent), var(--accent-2)); transform: translateY(100%); transition: transform 0.4s var(--ease-smooth); z-index: -1; }
+  .btn-primary:hover::before { transform: translateY(0); }
+  .btn-primary:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(201, 168, 118, 0.35); }
+  .btn-secondary { background: transparent; color: var(--fg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 12px; border: 1.5px solid var(--fg); transition: all 0.4s var(--ease-smooth); }
+  .btn-secondary:hover { background: var(--fg); color: var(--fg-light); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(26, 47, 42, 0.15); }
+  .btn-light { background: var(--accent); color: var(--bg-dark); padding: 16px 32px; border-radius: 100px; font-weight: 700; display: inline-flex; align-items: center; gap: 12px; transition: all 0.4s var(--ease-smooth); border: 1px solid var(--accent); }
+  .btn-light:hover { background: var(--accent-2); border-color: var(--accent-2); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(232, 149, 107, 0.35); }
+  
+  /* Optimized Service & Feature Cards */
+  .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 36px; transition: transform 0.5s var(--ease-smooth), box-shadow 0.5s var(--ease-smooth), border-color 0.5s ease; position: relative; overflow: hidden; transform-style: preserve-3d; will-change: transform; box-shadow: var(--shadow-soft); }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease; }
+  .service-card:hover { box-shadow: var(--shadow-premium); border-color: var(--accent); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card .icon-wrap { width: 64px; height: 64px; border-radius: 18px; background: linear-gradient(135deg, rgba(201, 168, 118, 0.15), rgba(232, 149, 107, 0.1)); display: flex; align-items: center; justify-content: center; color: var(--accent-dark); font-size: 26px; transition: all 0.5s; transform: translateZ(40px); }
+  .service-card:hover .icon-wrap { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; transform: rotate(-8deg) scale(1.05) translateZ(40px); }
+  .feature-card { background: rgba(245, 241, 234, 0.06); border: 1px solid var(--border-dark); border-radius: 20px; padding: 32px; transition: all 0.5s var(--ease-smooth); position: relative; overflow: hidden; will-change: transform; }
+  .feature-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+  
+  .team-card-3d { position: relative; border-radius: 24px; overflow: hidden; transform-style: preserve-3d; transition: transform 0.5s var(--ease-smooth), box-shadow 0.5s var(--ease-smooth); box-shadow: 0 10px 30px rgba(14, 42, 38, 0.08); background: var(--card); border: 1px solid var(--border); min-height: 480px; will-change: transform; }
+  .team-card-3d .team-img { position: absolute; inset: 0; overflow: hidden; }
+  .team-card-3d .team-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-smooth); transform: scale(1.05); }
+  .team-card-3d:hover .team-img img { transform: scale(1.15); }
+  .team-glare { position: absolute; inset: 0; pointer-events: none; z-index: 10; background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.35), transparent 40%); opacity: 0; transition: opacity 0.3s; mix-blend-mode: overlay; }
+  .team-card-3d:hover .team-glare { opacity: 1; }
+  .team-info-drawer { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; z-index: 5; background: linear-gradient(to top, rgba(14, 42, 38, 0.98) 0%, rgba(14, 42, 38, 0.85) 50%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; height: 35%; transition: height 0.5s var(--ease-smooth); }
+  .team-card-3d:hover .team-info-drawer { height: 50%; }
+  .team-info-drawer h4 { color: #fff; font-family: 'Fraunces', serif; font-size: 26px; margin-bottom: 4px; transform: translateZ(40px); }
+  .team-info-drawer .role { color: var(--accent); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; transform: translateZ(30px); display: block; }
+  .team-badge { position: absolute; top: 20px; right: 20px; background: rgba(245, 241, 234, 0.9); padding: 8px 14px; border-radius: 100px; font-size: 11px; font-weight: 700; color: var(--bg-dark); z-index: 6; letter-spacing: 0.05em; text-transform: uppercase; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.5); transform: translateZ(50px); }
+  .t-slider-wrapper { position: relative; max-width: 1100px; margin: 0 auto; padding: 0 80px; perspective: 1200px; }
+  .t-slider-stage { position: relative; width: 100%; height: 480px; transform-style: preserve-3d; }
+  .t-slide-card { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(145deg, rgba(16, 32, 28, 0.95) 0%, rgba(8, 17, 15, 0.98) 100%); border: 1px solid rgba(255, 215, 106, 0.2); border-radius: 28px; padding: 50px; box-shadow: 0 25px 50px rgba(0,0,0,0.4); transform-style: preserve-3d; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; backface-visibility: hidden; will-change: transform, opacity; }
+  .t-slide-card::before { content: ''; position: absolute; inset: 0; border-radius: 28px; padding: 1px; background: linear-gradient(135deg, rgba(255, 215, 106, 0.5), transparent, rgba(255, 215, 106, 0.2)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0.6; pointer-events: none; }
+  .t-quote-3d { position: absolute; top: 20px; left: 30px; font-family: 'Fraunces', serif; font-size: 120px; color: rgba(255, 215, 106, 0.1); transform: translateZ(20px); pointer-events: none; line-height: 1; }
+  .t-stars-3d { color: var(--accent); font-size: 20px; margin-bottom: 24px; transform: translateZ(40px); }
+  .t-slide-card p { font-size: 22px; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 32px; max-width: 800px; transform: translateZ(50px); font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; }
+  .t-footer-3d { padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); transform: translateZ(30px); }
+  .t-footer-3d h4 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 0; }
+  .t-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 20; width: 64px; height: 64px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 215, 106, 0.4); color: var(--accent); font-size: 24px; cursor: none; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+  .t-arrow:hover { background: var(--accent); color: var(--bg-dark); border-color: var(--accent); transform: translateY(-50%) scale(1.1); box-shadow: 0 0 20px rgba(201, 168, 118, 0.4); }
+  .t-arrow-prev { left: 10px; } .t-arrow-next { right: 10px; }
+  .t-dots { display: flex; justify-content: center; gap: 10px; margin-top: 40px; }
+  .t-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: none; transition: all 0.3s ease; }
+  .t-dot.active { background: var(--accent); width: 30px; border-radius: 5px; }
+  @media (max-width: 767px) { .t-slider-wrapper { padding: 0 40px; } .t-slider-stage { height: 520px; } .t-slide-card { padding: 28px 24px; } .t-slide-card p { font-size: 15px; line-height: 1.5; margin-bottom: 16px; } .t-quote-3d { font-size: 70px; top: 5px; left: 15px; } .t-stars-3d { font-size: 16px; margin-bottom: 16px; } .t-footer-3d h4 { font-size: 18px; } .t-arrow { width: 40px; height: 40px; font-size: 16px; } .t-arrow-prev { left: 5px; } .t-arrow-next { right: 5px; } }
+  .form-input { background: var(--card); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 20px; width: 100%; transition: all 0.3s; font-size: 15px; color: var(--fg); }
+  .form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(201, 168, 118, 0.12); }
+  .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .stat-number { font-family: 'Fraunces', serif; font-weight: 600; background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .deco-line { display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-dark); }
+  .deco-line::before { content: ''; width: 32px; height: 1.5px; background: var(--accent); transition: width 0.5s; }
+  .deco-line.center::after { content: ''; width: 32px; height: 1.5px; background: var(--accent); transition: width 0.5s; }
+  .mobile-menu-overlay { position: fixed; inset: 0; z-index: 49; background: rgba(14, 42, 38, 0.6); opacity: 0; visibility: hidden; transition: opacity 0.5s var(--ease-smooth), visibility 0.5s var(--ease-smooth); }
+  .mobile-menu-overlay.open { opacity: 1; visibility: visible; }
+  .mobile-menu { transform: translateX(100%); transition: transform 0.7s var(--ease-smooth); box-shadow: -20px 0 60px rgba(0,0,0,0.3); background: radial-gradient(circle at top right, rgba(201,168,118,0.15), var(--bg-dark) 60%); border-left: 1px solid rgba(201, 168, 118, 0.2); overflow-y: auto; }
+  .mobile-menu.open { transform: translateX(0); }
+  .mobile-link { opacity: 0; transform: translateX(40px); transition: opacity 0.5s ease, transform 0.6s var(--ease-smooth), color 0.3s ease; position: relative; display: block; padding-bottom: 8px; font-size: 2.5rem; line-height: 1.2; font-family: 'Fraunces', serif; color: rgba(255, 255, 255, 0.85); }
+  .mobile-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.4s var(--ease-smooth); }
+  .mobile-link:hover::after { width: 100%; } .mobile-link:hover { color: var(--accent); }
+  .mobile-menu.open .mobile-link { opacity: 1; transform: translateX(0); }
+  .mobile-menu.open .mobile-link:nth-child(1) { transition-delay: 0.2s; } .mobile-menu.open .mobile-link:nth-child(2) { transition-delay: 0.25s; } .mobile-menu.open .mobile-link:nth-child(3) { transition-delay: 0.3s; } .mobile-menu.open .mobile-link:nth-child(4) { transition-delay: 0.35s; } .mobile-menu.open .mobile-link:nth-child(5) { transition-delay: 0.4s; } .mobile-menu.open .mobile-link:nth-child(6) { transition-delay: 0.45s; } .mobile-menu.open .mobile-link:nth-child(7) { transition-delay: 0.5s; }
+  .mobile-menu-close-btn { transition: transform 0.3s var(--ease-smooth), background 0.3s ease; }
+  .mobile-menu-close-btn:hover { transform: rotate(90deg); background: rgba(201, 168, 118, 0.15); }
+  .mobile-menu-btn { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--bg-dark); padding: 18px 32px; border-radius: 100px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; font-size: 1.1rem; box-shadow: 0 10px 30px rgba(201, 168, 118, 0.3); opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.6s var(--ease-smooth), background 0.3s, box-shadow 0.3s; }
+  .mobile-menu.open .mobile-menu-btn { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+  .mobile-menu-btn:hover { background: linear-gradient(135deg, var(--accent-2), var(--accent)); box-shadow: 0 15px 40px rgba(201, 168, 118, 0.4); transform: translateY(-2px); }
+  .floating-cta { position: fixed; bottom: 30px; right: 30px; z-index: 50; opacity: 0; transform: scale(0.5) translateY(20px); pointer-events: none; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .floating-cta.visible { opacity: 1; transform: scale(1) translateY(0); pointer-events: auto; }
+  .marquee { display: flex; overflow: hidden; user-select: none; gap: 60px; -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+  .marquee-track { display: flex; gap: 60px; animation: marquee 30s linear infinite; flex-shrink: 0; will-change: transform; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .map-wrapper { position: relative; border-radius: 28px; overflow: hidden; border: 1px solid var(--border); }
+  .map-wrapper iframe { filter: grayscale(0.3) sepia(0.15) hue-rotate(-10deg) saturate(0.8); transition: filter 0.4s; }
+  .map-wrapper:hover iframe { filter: grayscale(0) sepia(0) hue-rotate(0deg) saturate(1); }
+  .toast { position: fixed; top: 100px; right: 30px; background: var(--bg-dark); color: var(--fg-light); padding: 16px 24px; border-radius: 14px; border-left: 4px solid var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.2); transform: translateX(120%); transition: transform 0.4s; z-index: 100; display: flex; align-items: center; gap: 12px; font-weight: 500; }
+  .toast.show { transform: translateX(0); }
+  .gallery-tab { padding: 10px 22px; border-radius: 100px; font-size: 14px; font-weight: 600; border: 1.5px solid var(--border); background: var(--card); color: var(--muted); cursor: none; transition: all 0.3s; }
+  .gallery-tab:hover { border-color: var(--accent); color: var(--fg); }
+  .gallery-tab.active { background: var(--bg-dark); color: var(--fg-light); border-color: var(--bg-dark); }
+  .star { color: var(--accent); }
+  .draw-underline { background-image: linear-gradient(120deg, var(--accent), var(--accent-2)); background-repeat: no-repeat; background-size: 100% 38%; background-position: 0 88%; padding: 0 4px; }
+  
+  /* Ultra-Premium FAQ Section */
+  .faq-card { border: 1px solid rgba(255,255,255,0.08); background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border-radius: 16px; margin-bottom: 16px; transition: all 0.4s var(--ease-smooth); overflow: hidden; position: relative; }
+  .faq-card::after { content: ''; position: absolute; inset: 0; border-radius: 16px; padding: 1px; background: linear-gradient(135deg, rgba(201, 168, 118, 0.6), transparent 50%, rgba(232, 149, 107, 0.3)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 0.4s ease; pointer-events: none; }
+  .faq-card.active::after, .faq-card:hover::after { opacity: 1; }
+  .faq-card.active { background: linear-gradient(145deg, rgba(201, 168, 118, 0.05), rgba(255,255,255,0.02)); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+  .faq-trigger { width: 100%; padding: 24px 32px; display: flex; align-items: center; gap: 24px; text-align: left; color: rgba(245, 241, 234, 0.8); font-weight: 500; font-size: 1.1rem; cursor: none; transition: color 0.3s; }
+  .faq-card.active .faq-trigger, .faq-card:hover .faq-trigger { color: #fff; }
+  .faq-number { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 400; color: var(--accent); opacity: 0.3; transition: opacity 0.4s, transform 0.4s; line-height: 1; min-width: 40px; }
+  .faq-card.active .faq-number, .faq-card:hover .faq-number { opacity: 1; transform: scale(1.1); }
+  .faq-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.45s var(--ease-smooth); }
+  .faq-card.active .faq-content { grid-template-rows: 1fr; }
+  .faq-content-wrapper { overflow: hidden; }
+  .faq-content-inner { padding: 0 32px 28px 96px; color: rgba(245, 241, 234, 0.6); line-height: 1.7; font-size: 1rem; }
+  .faq-icon-wrap { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.4s var(--ease-smooth); position: relative; margin-left: auto; }
+  .faq-card.active .faq-icon-wrap { background: var(--accent); border-color: var(--accent); transform: rotate(135deg); box-shadow: 0 0 15px rgba(201, 168, 118, 0.4); }
+  .faq-icon-wrap::before, .faq-icon-wrap::after { content: ''; position: absolute; background: var(--accent); transition: all 0.4s ease; border-radius: 2px; }
+  .faq-icon-wrap::before { width: 14px; height: 2px; }
+  .faq-icon-wrap::after { width: 2px; height: 14px; }
+  .faq-card.active .faq-icon-wrap::before, .faq-card.active .faq-icon-wrap::after { background: var(--bg-dark); }
+
+  .blog-card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; overflow: hidden; transition: all 0.4s; }
+  .blog-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(14, 42, 38, 0.1); }
+  .blog-card .blog-img { aspect-ratio: 16/10; overflow: hidden; }
+  .blog-card .blog-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s; }
+  .blog-card:hover .blog-img img { transform: scale(1.08); }
+  .insurance-logo { padding: 24px 32px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+  .insurance-logo:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .insurance-logo span { font-family: 'Fraunces', serif; font-weight: 700; font-size: 18px; color: var(--muted); transition: color 0.3s; }
+  .insurance-logo:hover span { color: var(--fg); }
+  .parallax { will-change: transform; }
+  .hero-bg-wrapper { position: absolute; inset: 0; z-index: 0; overflow: hidden; background-color: #fff1e7; background-image: url('https://cdn.builder.io/api/v1/image/assets%2Fb1cccc0f4b46467fbd523c06c547b0db%2Fcf883f0ef3544f07906eb0bcf040dced?format=webp&width=3840&height=2160'); background-repeat: no-repeat; background-position: center; background-size: 100% 100%; transform: scale(1.1); opacity: 0; transition: transform 1.2s var(--ease-smooth), opacity 1s ease-out; will-change: transform, opacity; }
+  .hero-bg-wrapper.loaded { transform: scale(1); opacity: 1; }
+  .mobile-hero-artwork-wrap { display: none; }
+  @media (max-width: 1024px) {
+    .testimonial-card { padding: 28px; } .service-card { padding: 28px; } .quote-mark { font-size: 80px; } .hero-bg-wrapper { display: none !important; } .mobile-hero-artwork-wrap { position: absolute; inset: 0; z-index: 0; display: flex; justify-content: center; align-items: center; overflow: hidden; pointer-events: none; } 
+    .invitation-artwork { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; transform: scale(1.1); opacity: 0; transition: transform 1.5s var(--ease-smooth), opacity 1.2s ease-out; will-change: transform, opacity; } 
+    .invitation-artwork.loaded { transform: scale(1); opacity: 1; } 
+    #home { min-height: 100svh; padding-top: 90px; padding-bottom: 20px; display: flex; align-items: center; }
+  }
+  
+  /* Timeline Optimized for Performance */
+  .timeline-services-section { background: radial-gradient(circle at 50% 15%, #0E241E 0%, #050D0A 100%); position: relative; overflow: hidden; color: #F5F1EA; scroll-margin-top: 80px; }
+  .timeline-bg-stars { position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(1.5px 1.5px at 12% 15%, #FFE9AD 100%, transparent), radial-gradient(2px 2px at 88% 22%, #FFF0C2 100%, transparent), radial-gradient(1.5px 1.5px at 22% 78%, #F0D593 100%, transparent), radial-gradient(2px 2px at 78% 85%, #FFE9AD 100%, transparent), radial-gradient(1.5px 1.5px at 50% 35%, #FFF0C2 100%, transparent); opacity: 0.7; transform: translateZ(0); will-change: transform; }
+  .gold-flare-tl { position: absolute; top: -80px; left: -80px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(230, 198, 135, 0.2) 0%, rgba(212, 175, 55, 0.05) 45%, transparent 70%); filter: blur(30px); pointer-events: none; transform: translateZ(0); will-change: transform; }
+  .gold-flare-br { position: absolute; bottom: -80px; right: -80px; width: 450px; height: 450px; background: radial-gradient(circle, rgba(230, 198, 135, 0.18) 0%, rgba(212, 175, 55, 0.05) 50%, transparent 70%); filter: blur(35px); pointer-events: none; transform: translateZ(0); will-change: transform; }
+  .bottom-gold-waves { position: absolute; bottom: 0; left: 0; right: 0; height: 180px; pointer-events: none; overflow: hidden; transform: translateZ(0); will-change: transform; }
+  @media (max-width: 767px) {
+    .gold-flare-tl, .gold-flare-br, .timeline-bg-stars { display: none; }
+    .timeline-traveling-orb { box-shadow: none !important; }
+    .timeline-central-axis-fill { box-shadow: none !important; }
+    .timeline-branch-line::after { animation: none !important; }
+    .timeline-box, .timeline-box:hover, .timeline-row.active .timeline-box {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important; border: none !important;
+    }
+    .timeline-box:hover { transform: none !important; }
+    .timeline-box:hover::after, .timeline-row.active .timeline-box::before { opacity: 0 !important; }
+    .timeline-box { will-change: transform, opacity; }
+    .timeline-node-dot { will-change: auto; }
+  }
+  .timeline-container { position: relative; max-width: 1080px; margin: 0 auto; }
+  .timeline-central-axis { position: absolute; top: 40px; bottom: 40px; left: 50%; width: 1px; transform: translateX(-50%); background: rgba(230, 198, 135, 0.1); z-index: 1; }
+  .timeline-central-axis-fill { position: absolute; top: 40px; bottom: 40px; left: 50%; width: 2px; transform: translateX(-50%) scaleY(0); transform-origin: top center; background: linear-gradient(180deg, #FFD76A 0%, #D4AF37 50%, #FFF4D0 100%); z-index: 2; will-change: transform; }
+  .timeline-traveling-orb { position: absolute; top: 40px; left: 50%; width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, #FFF4CD 40%, #FFD76A 100%); z-index: 15; box-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFD76A; pointer-events: none; will-change: transform, opacity; opacity: 0; }
+  .timeline-row { position: relative; display: flex; align-items: center; justify-content: center; min-height: 120px; z-index: 3; margin-bottom: 2.5rem; }
+  @media (min-width: 768px) { .timeline-row-left { justify-content: flex-start; padding-right: 50%; } .timeline-row-right { justify-content: flex-end; padding-left: 50%; } }
+  .timeline-node-dot { position: absolute; top: 50%; left: 50%; width: 10px; height: 10px; border-radius: 50%; background: #050D0A; border: 1px solid rgba(255, 215, 106, 0.3); transform: translate(-50%, -50%); z-index: 10; transition: background 0.4s ease, border-color 0.4s ease, transform 0.4s var(--ease-smooth); }
+  .timeline-row.active .timeline-node-dot { background: #FFFFFF; border-color: #FFFFFF; transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 0 10px rgba(255, 215, 106, 0.5); }
+  .timeline-branch-line { position: absolute; top: 50%; height: 2px; background: linear-gradient(90deg, #FFD76A 0%, rgba(255, 215, 106, 0.1)); z-index: 4; width: 28px; opacity: 0; transform: translateY(-50%) scaleX(0); overflow: hidden; transition: transform 0.4s var(--ease-smooth), opacity 0.4s; }
+  .timeline-branch-line::after { content: ''; position: absolute; top: 0; left: -100%; height: 100%; width: 40%; background: linear-gradient(90deg, transparent, #FFFFFF, transparent); animation: laserSurge 2s infinite linear; }
+  @media (min-width: 768px) { .timeline-row-left .timeline-branch-line { right: 50%; transform-origin: right center; } .timeline-row-right .timeline-branch-line { left: 50%; transform-origin: left center; } }
+  .timeline-row.active .timeline-branch-line { opacity: 1; transform: translateY(-50%) scaleX(1) !important; }
+  
+  .timeline-box { width: 100%; max-width: 480px; background: linear-gradient(135deg, rgba(16, 32, 28, 0.94) 0%, rgba(8, 17, 15, 0.98) 100%); border: 1px solid rgba(230, 198, 135, 0.0); border-radius: 20px; padding: 1.6rem 1.8rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); position: relative; overflow: hidden; transition: opacity 0.5s var(--ease-smooth), transform 0.5s var(--ease-smooth), border-color 0.4s; opacity: 0; cursor: pointer; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+  @media (min-width: 768px) { .timeline-row-left .timeline-box { margin-right: 28px; transform: translateX(-50px) translateZ(0); } .timeline-row-right .timeline-box { margin-left: 28px; transform: translateX(50px) translateZ(0); } }
+  .timeline-box::before { content: ''; position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: radial-gradient(circle at 100% 0%, rgba(255, 215, 106, 0.22) 0%, transparent 70%); pointer-events: none; opacity: 0; transition: opacity 0.4s; z-index: 1; }
+  .timeline-row.active .timeline-box { opacity: 1; transform: translateX(0) translateY(0) translateZ(0) !important; border-color: rgba(255, 215, 106, 0.6); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); }
+  .timeline-row.active .timeline-box::before { opacity: 1; }
+  .timeline-box:hover { border-color: rgba(255, 235, 170, 0.95) !important; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7) !important; transform: translateX(0) translateY(-5px) scale(1.02) translateZ(0) !important; transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s var(--ease-smooth); }
+  .timeline-icon-frame { width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, rgba(255, 215, 106, 0.16), rgba(10, 20, 18, 0.7)); border: 1px solid rgba(255, 215, 106, 0.3); display: flex; align-items: center; justify-content: center; color: #FFD76A; font-size: 22px; flex-shrink: 0; transform: scale(0.9) translateZ(0); transition: all 0.5s var(--ease-smooth); z-index: 2; }
+  .timeline-row.active .timeline-icon-frame { transform: scale(1) translateZ(0); border-color: rgba(255, 215, 106, 0.8); }
+  @keyframes laserSurge { 0% { left: -100%; } 100% { left: 200%; } }
+  .timeline-box > * { position: relative; z-index: 2; }
+  @media (max-width: 767px) { .timeline-central-axis, .timeline-central-axis-fill { left: 20px; transform: none; } .timeline-central-axis-fill { transform: scaleY(0); transform-origin: top center; } .timeline-traveling-orb { left: 20px; } .timeline-node-dot { left: 20px; } .timeline-row { padding-left: 52px; padding-right: 0px; justify-content: flex-start; margin-bottom: 1.5rem; } .timeline-branch-line { left: 20px; width: 32px; transform-origin: left center; } .timeline-branch-line::after { right: -3px; left: auto; } .timeline-row-left .timeline-box, .timeline-row-right .timeline-box { margin-left: 0; margin-right: 10px !important; max-width: calc(100% - 10px) !important; padding: 1.1rem 1.2rem; transform: translateX(50px) translateZ(0); } .timeline-box > .flex.items-center { gap: 12px !important; } .timeline-icon-frame { width: 38px; height: 38px; font-size: 15px; border-radius: 10px; } .timeline-box h3 { font-size: 16px; margin-bottom: 4px; } .timeline-box p { font-size: 12px; } .timeline-box .mt-2 { margin-top: 4px; font-size: 10px; } }
+  
+  #gallery { background: radial-gradient(circle at 50% 50%, #F5F1EA 0%, #EDE6D8 100%); position: relative; overflow: hidden; }
+  .gallery-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60%; height: 60%; background: radial-gradient(circle, rgba(201, 168, 118, 0.2) 0%, transparent 70%); filter: blur(80px); z-index: 0; pointer-events: none; }
+  .ba-frame { position: relative; width: 100%; aspect-ratio: 3/2; overflow: hidden; background: #000; user-select: none; cursor: ew-resize; border: none !important; box-shadow: 0 30px 60px -15px rgba(14, 42, 38, 0.3) !important; border-radius: 24px !important; }
+  .ba-frame::after { content: ''; position: absolute; inset: 0; border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 24px; z-index: 20; pointer-events: none; }
+  @media (max-width: 767px) { .ba-frame { aspect-ratio: 1/1; } }
+  .ba-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: 200% auto; background-repeat: no-repeat; pointer-events: none; will-change: clip-path, opacity; }
+  .ba-layer-after { background-position: right center; }
+  .ba-layer-before { background-position: left center; clip-path: inset(0 50% 0 0); z-index: 2; }
+  .ba-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 4px; background: linear-gradient(180deg, #fff, #f0f0f0); transform: translateX(-50%); pointer-events: none; z-index: 10; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+  .ba-grip { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 64px; height: 64px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; color: #0E2A26; font-size: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.25), inset 0 0 0 2px rgba(201, 168, 118, 0.3); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s; }
+  .ba-frame:hover .ba-grip { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 15px 35px rgba(0,0,0,0.35), inset 0 0 0 4px var(--accent); }
+  .ba-label { position: absolute; top: 24px; padding: 8px 18px; border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; z-index: 5; pointer-events: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.3); background: rgba(14, 42, 38, 0.85); color: #fff; left: 24px; }
+  .ba-label-after { background: rgba(201, 168, 118, 0.95); color: #0E2A26; right: 24px; left: auto; }
+  .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 30; width: 64px; height: 64px; border-radius: 50%; background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(255, 255, 255, 0.5); color: var(--bg-dark); font-size: 20px; cursor: none; display: flex; align-items: center; justify-content: center; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 8px 25px rgba(14, 42, 38, 0.15); }
+  .gallery-arrow:hover { background: var(--bg-dark); color: var(--accent); transform: translateY(-50%) scale(1.15); box-shadow: 0 12px 35px rgba(14, 42, 38, 0.3); border-color: var(--bg-dark); }
+  @media (max-width: 767px) { .ba-grip { width: 44px; height: 44px; font-size: 14px; box-shadow: 0 6px 15px rgba(0,0,0,0.25), inset 0 0 0 2px rgba(201, 168, 118, 0.3); } .ba-frame:hover .ba-grip { transform: translate(-50%, -50%) scale(1.05); } .gallery-arrow { width: 40px; height: 40px; font-size: 14px; } .ba-label { font-size: 9px; padding: 6px 12px; top: 12px; letter-spacing: 1px; } .ba-label-before { left: 12px; } .ba-label-after { right: 12px; } }
+  :root { --chat-accent: var(--accent); --chat-accent-2: var(--accent-2); --chat-accent-hover: var(--accent-dark); --chat-icon-color: var(--bg); --chat-bg: var(--bg-dark); --chat-bg-2: var(--bg-dark-2); }
+  .chatbot-fab { position: fixed; bottom: 25px; right: 25px; width: 90px; height: 90px; background: transparent; display: flex; align-items: center; justify-content: center; cursor: none; z-index: 9998; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); opacity: 0; transform: translateX(120px) rotate(-30deg) scale(0.8); animation: botIntroDesktop 5s cubic-bezier(0.16, 1, 0.3, 1) 2.2s forwards, botFloat 4s ease-in-out 7.2s infinite; }
+  .chatbot-fab:hover { transform: scale(1.15) translateY(-5px) !important; animation-play-state: paused; }
+  .chatbot-fab .robot-icon { width: 72px; height: 72px; color: var(--chat-accent); filter: drop-shadow(0 4px 10px rgba(14, 42, 38, 0.18)); transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  @keyframes botIntroDesktop { 0% { opacity: 0; transform: translateX(120px) rotate(-30deg) scale(0.8); } 12% { opacity: 1; transform: translateX(78px) rotate(-18deg) scale(1); } 70% { opacity: 1; transform: translateX(78px) rotate(-18deg) scale(1); } 82% { opacity: 1; transform: translateX(-12px) rotate(5deg) scale(1.08); } 90%, 100% { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); } }
+  @keyframes botFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .pulse-green-dot { transform-origin: 74px 24px; animation: greenDotPulse 2s infinite ease-in-out; }
+  @keyframes greenDotPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+  .bot-eye-left { transform-origin: 39px 46px; animation: eyeBlink 2.5s infinite ease-in-out; }
+  .bot-eye-right { transform-origin: 61px 46px; animation: eyeBlink 2.5s infinite ease-in-out; }
+  @keyframes eyeBlink { 0%, 88%, 100% { transform: scaleY(1); } 92%, 96% { transform: scaleY(0.05); } }
+  .chat-window { position: fixed; bottom: 100px; right: 25px; width: 360px; height: 500px; background: var(--chat-bg); border: 1px solid var(--accent-2); border-radius: 20px; z-index: 9998; display: flex; flex-direction: column; overflow: hidden; opacity: 0; visibility: hidden; clip-path: circle(0% at 90% 90%); transition: clip-path 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease, visibility 0.4s ease; }
+  .chat-window.open { opacity: 1; visibility: visible; clip-path: circle(145% at 90% 90%); animation: chatGlowOrange 2.5s infinite alternate ease-in-out; }
+  @keyframes chatGlowOrange { 0% { box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 10px rgba(232, 149, 107, 0.3); border-color: rgba(232, 149, 107, 0.5); } 100% { box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 25px rgba(232, 149, 107, 0.8); border-color: rgba(232, 149, 107, 1); } }
+  @media (max-width: 767px) { .chatbot-fab { bottom: 20px; right: 20px; width: 60px; height: 60px; transform: translateX(100px) rotate(-30deg) scale(0.8); animation: botIntroMobile 5s cubic-bezier(0.16, 1, 0.3, 1) 2.2s forwards, botFloat 4s ease-in-out 7.2s infinite; } .chatbot-fab .robot-icon { width: 48px; height: 48px; } .chat-window { width: calc(100% - 24px); left: 12px; right: 12px; bottom: 85px; height: 70vh; max-height: 550px; border-radius: 20px; } .chat-header { padding: 12px 15px; } .chat-header .bot-name { font-size: 14px; } .chat-header .bot-status { font-size: 10px; } .lang-btn { padding: 2px 8px; font-size: 10px; } .chat-body { padding: 15px; gap: 12px; } .chat-msg { font-size: 13px; padding: 10px 14px; } .chat-footer { padding: 12px; } .quick-reply-btn { padding: 5px 10px; font-size: 11px; } .chat-input { font-size: 13px; } .chat-send-btn { width: 32px; height: 32px; } .chat-input-wrap { padding: 4px 4px 4px 14px; } }
+  @keyframes botIntroMobile { 0% { opacity: 0; transform: translateX(100px) rotate(-30deg) scale(0.8); } 12% { opacity: 1; transform: translateX(52px) rotate(-18deg) scale(1); } 70% { opacity: 1; transform: translateX(52px) rotate(-18deg) scale(1); } 82% { opacity: 1; transform: translateX(-10px) rotate(5deg) scale(1.08); } 90%, 100% { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); } }
+  .chat-header { padding: 15px 20px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-dark); }
+  .chat-header .bot-info { display: flex; align-items: center; gap: 12px; }
+  .chat-header .bot-name { color: var(--fg-light); font-weight: 700; font-size: 16px; }
+  .chat-header .bot-status { color: var(--accent-3); font-size: 12px; display: flex; align-items: center; gap: 6px; }
+  .chat-header .bot-status::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-3); }
+  .header-controls { display: flex; align-items: center; gap: 12px; }
+  .lang-switcher { display: flex; gap: 4px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 100px; border: 1px solid var(--border-dark); }
+  .lang-btn { padding: 2px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; background: transparent; border: none; color: var(--muted); cursor: none; transition: all 0.3s; }
+  .lang-btn:hover { color: var(--fg-light); }
+  .lang-btn.active-lang { background: linear-gradient(135deg, var(--chat-accent), var(--chat-accent-2)); color: var(--chat-bg); }
+  .chat-close-btn { background: transparent; border: none; color: var(--muted); cursor: none; font-size: 18px; transition: color 0.3s; }
+  .chat-close-btn:hover { color: var(--fg-light); }
+  .chat-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+  .chat-body::-webkit-scrollbar { width: 4px; }
+  .chat-body::-webkit-scrollbar-thumb { background: var(--chat-accent-hover); border-radius: 4px; }
+  .chat-msg { max-width: 80%; padding: 12px 16px; border-radius: 16px; font-size: 14px; line-height: 1.5; animation: msgFadeIn 0.4s var(--ease-smooth) forwards; }
+  @keyframes msgFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .chat-msg.bot { background: rgba(255,255,255,0.1); color: var(--fg-light); align-self: flex-start; border-bottom-left-radius: 4px; }
+  .chat-msg.user { background: linear-gradient(135deg, var(--chat-accent), var(--chat-accent-2)); color: var(--chat-bg); align-self: flex-end; border-bottom-right-radius: 4px; font-weight: 500; }
+  .chat-msg.system { background: transparent; border: 1px dashed var(--muted); color: var(--muted); font-size: 12px; align-self: center; max-width: 90%; text-align: center; }
+  .typing-indicator { display: flex; gap: 4px; align-self: flex-start; padding: 12px 16px; background: rgba(255,255,255,0.1); border-radius: 16px; border-bottom-left-radius: 4px; }
+  .typing-indicator span { width: 8px; height: 8px; background: var(--muted); border-radius: 50%; animation: typingBounce 1s infinite; }
+  .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  .chat-footer { padding: 15px; background: rgba(255,255,255,0.03); border-top: 1px solid var(--border-dark); }
+  .quick-replies { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+  .quick-reply-btn { padding: 6px 12px; background: rgba(201, 168, 118, 0.1); border: 1px solid var(--chat-accent); color: var(--chat-accent); border-radius: 100px; font-size: 12px; font-weight: 600; cursor: none; transition: all 0.3s; }
+  .quick-reply-btn:hover { background: linear-gradient(135deg, var(--chat-accent), var(--chat-accent-2)); color: var(--chat-bg); }
+  .chat-input-wrap { display: flex; align-items: center; gap: 10px; background: var(--bg); border-radius: 100px; padding: 5px 5px 5px 16px; }
+  .chat-input { flex: 1; background: transparent; border: none; outline: none; color: var(--fg); font-size: 14px; }
+  .chat-send-btn { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--chat-accent), var(--chat-accent-2)); color: var(--chat-bg); border: none; display: flex; align-items: center; justify-content: center; cursor: none; transition: all 0.3s; }
+  .chat-send-btn:hover { background: var(--chat-accent-hover); transform: scale(1.05); }
+  .footer-brand-huge { font-family: 'Fraunces', serif; font-size: clamp(5rem, 18vw, 16rem); font-weight: 900; line-height: 0.8; letter-spacing: -0.02em; text-align: center; margin-top: 60px; margin-bottom: -2vw; background: linear-gradient(90deg, rgba(245,241,234,0.05) 0%, rgba(201,168,118,0.4) 25%, rgba(245,241,234,0.7) 50%, rgba(201,168,118,0.4) 75%, rgba(245,241,234,0.05) 100%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: footerTextShine 6s linear infinite; text-transform: uppercase; pointer-events: none; opacity: 0; transform: translateY(40px); transition: opacity 1.5s var(--ease-smooth), transform 1.5s var(--ease-smooth); z-index: 0; will-change: opacity, transform; }
+  .footer-brand-huge.in-view { opacity: 1; transform: translateY(0); }
+  @keyframes footerTextShine { to { background-position: 200% center; } }
+</style>
+</head>
+<body>
+
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
+
+<div class="preloader" id="preloader">
+  <div class="preloader-text">
+    <span style="animation-delay: 0s;">L</span><span style="animation-delay: 0.05s;">u</span><span style="animation-delay: 0.1s;">m</span><span style="animation-delay: 0.15s;">i</span><span style="animation-delay: 0.2s;">r</span><span style="animation-delay: 0.25s;">e</span>
+  </div>
+  <div class="preloader-bar"></div>
+</div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<div class="toast" id="toast">
+  <i class="fa-solid fa-circle-check text-2xl" style="color: var(--accent);"></i>
+  <span id="toastMsg">Appointment request sent successfully!</span>
+</div>
+
+<nav class="fixed top-0 left-0 right-0 z-40 nav-blur" id="navbar">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+    <a href="#home" class="flex items-center gap-3 group" data-magnetic>
+      <div class="relative w-11 h-11 flex items-center justify-center">
+        <svg viewBox="0 0 40 40" class="w-full h-full">
+          <defs><linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C9A876"/><stop offset="100%" stop-color="#E8956B"/></linearGradient></defs>
+          <path d="M20 4 C12 4, 6 10, 6 18 C6 24, 8 28, 10 32 C11 34, 13 36, 15 34 C16 33, 16 30, 17 27 C18 24, 22 24, 23 27 C24 30, 24 33, 25 34 C27 36, 29 34, 30 32 C32 28, 34 24, 34 18 C34 10, 28 4, 20 4 Z" fill="url(#logoGrad)"/>
+          <circle cx="20" cy="16" r="3" fill="#F5F1EA" opacity="0.7"/>
+        </svg>
+      </div>
+      <div>
+        <div class="font-display text-2xl font-700 tracking-tight" style="color: var(--fg);">Lumire</div>
+        <div class="text-[10px] tracking-[0.2em] uppercase font-semibold -mt-1" style="color: var(--muted);">Dental Studio</div>
+      </div>
+    </a>
+    <div class="hidden lg:flex items-center gap-8">
+      <a href="#home" class="nav-link text-sm font-semibold active">Home</a>
+      <a href="#about" class="nav-link text-sm font-semibold">About</a>
+      <a href="#services" class="nav-link text-sm font-semibold">Services</a>
+      <a href="#why" class="nav-link text-sm font-semibold">Why Us</a>
+      <a href="#gallery" class="nav-link text-sm font-semibold">Gallery</a>
+      <a href="#testimonials" class="nav-link text-sm font-semibold">Testimonials</a>
+      <a href="#contact" class="nav-link text-sm font-semibold">Contact</a>
+    </div>
+    <div class="hidden lg:flex items-center gap-4">
+      <a href="tel:+15551234567" class="flex items-center gap-2 text-sm font-semibold" style="color: var(--fg);">
+        <i class="fa-solid fa-phone-volume" style="color: var(--accent-dark);"></i> +1 (555) 123-4567
+      </a>
+      <a href="#contact" class="btn-primary !py-3 !px-6 text-sm" data-magnetic>
+        <span>Book Visit</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+      </a>
+    </div>
+    <button class="lg:hidden text-2xl" id="menuToggle" style="color: var(--fg);">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+<div class="mobile-menu fixed top-0 right-0 bottom-0 w-full max-w-md z-50 p-8 flex flex-col" id="mobileMenu">
+  <svg class="botanical-deco" style="bottom: -50px; left: -50px; width: 300px; height: 300px; opacity: 0.05; transform: rotate(0deg);" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 0 C50 50 0 100 50 200 C100 150 150 100 100 0 Z" fill="#C9A876"/>
+    <path d="M100 0 V200" stroke="#C9A876" stroke-width="2"/>
+  </svg>
+
+  <div class="flex justify-between items-center mb-12 relative z-10">
+    <div class="flex items-center gap-2.5">
+      <svg viewBox="0 0 40 40" class="w-8 h-8">
+        <defs><linearGradient id="mobileLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C9A876"/><stop offset="100%" stop-color="#E8956B"/></linearGradient></defs>
+        <path d="M20 4 C12 4, 6 10, 6 18 C6 24, 8 28, 10 32 C11 34, 13 36, 15 34 C16 33, 16 30, 17 27 C18 24, 22 24, 23 27 C24 30, 24 33, 25 34 C27 36, 29 34, 30 32 C32 28, 34 24, 34 18 C34 10, 28 4, 20 4 Z" fill="url(#mobileLogoGrad)"/>
+        <circle cx="20" cy="16" r="3" fill="#0E2A26" opacity="0.7"/>
+      </svg>
+      <span class="font-display text-xl text-white tracking-wider">Lumire</span>
+    </div>
+    <button class="mobile-menu-close-btn text-3xl text-white w-12 h-12 rounded-full flex items-center justify-center" id="menuClose" style="color: var(--fg-light);">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  
+  <div class="flex flex-col gap-4 flex-grow relative z-10 justify-center">
+    <a href="#home" class="mobile-link">Home</a>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#why" class="mobile-link">Why Choose Us</a>
+    <a href="#gallery" class="mobile-link">Gallery</a>
+    <a href="#testimonials" class="mobile-link">Testimonials</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
+
+  <div class="mt-8 pt-8 border-t relative z-10" style="border-color: rgba(245, 241, 234, 0.1);">
+    <a href="tel:+15551234567" class="block mb-6 text-sm flex items-center gap-3 transition-colors" style="color: rgba(245, 241, 234, 0.7);">
+      <i class="fa-solid fa-phone-volume text-lg" style="color: var(--accent);"></i> 
+      <span>+1 (555) 123-4567</span>
+    </a>
+    <a href="#contact" class="mobile-menu-btn">
+      <span>Book Appointment</span> <i class="fa-solid fa-arrow-right"></i>
+    </a>
+  </div>
+</div>
+
+<section id="home" class="relative min-h-[100svh] flex items-center pt-24 pb-10 lg:pt-32 lg:pb-20 overflow-hidden">
+  <div class="hero-bg-wrapper" id="heroBgWrapper"></div>
+  <div class="mobile-hero-artwork-wrap">
+    <img class="invitation-artwork" src="https://cdn.builder.io/api/v1/image/assets%2F5aaa01efb9e44d48b17a3de3c035649f%2F77dec1ad485c4c269cb1a1379b09b442?format=webp&width=800&height=1200" alt="Decorative mobile artwork" decoding="async" loading="eager">
+  </div>
+  <svg class="botanical-deco" style="top: -50px; left: -100px; width: 400px; height: 400px;" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 0 C50 50 0 100 50 200 C100 150 150 100 100 0 Z" fill="rgba(91, 138, 122, 0.1)"/>
+    <path d="M100 0 V200" stroke="rgba(91, 138, 122, 0.2)" stroke-width="2"/>
+    <path d="M100 50 C70 70 50 90 30 110" stroke="rgba(91, 138, 122, 0.2)" stroke-width="1.5"/>
+    <path d="M100 100 C70 120 50 140 30 160" stroke="rgba(91, 138, 122, 0.2)" stroke-width="1.5"/>
+  </svg>
+  <svg class="botanical-deco reverse" style="bottom: -50px; right: -100px; width: 450px; height: 450px; transform: rotate(180deg);" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 0 C50 50 0 100 50 200 C100 150 150 100 100 0 Z" fill="rgba(201, 168, 118, 0.08)"/>
+    <path d="M100 0 V200" stroke="rgba(201, 168, 118, 0.15)" stroke-width="2"/>
+  </svg>
+  <div class="absolute top-40 right-20 w-72 h-72 morph-blob opacity-30 parallax" data-speed="0.2" style="background: radial-gradient(circle, rgba(201, 168, 118, 0.4), transparent 70%); filter: blur(40px); z-index: 1;"></div>
+  <div class="absolute bottom-20 left-10 w-96 h-96 morph-blob opacity-25 parallax" data-speed="0.3" style="background: radial-gradient(circle, rgba(91, 138, 122, 0.4), transparent 70%); filter: blur(50px); animation-delay: -3s; z-index: 1;"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 relative z-10 w-full">
+    <div class="hidden lg:grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+      <div class="lg:col-span-6 text-center lg:text-left">
+        <div class="deco-line mb-3 lg:mb-8 hero-text-reveal justify-center lg:justify-start">Welcome to Lumire Dental Studio</div>
+        <h1 class="font-display text-3xl sm:text-5xl lg:text-[clamp(2.8rem,6vw,5.5rem)] font-500 leading-[0.95] tracking-tight mb-3 lg:mb-8" style="color: var(--fg);">
+          <div class="hero-text-reveal">Where smiles</div>
+          <div class="hero-text-reveal">find their <em class="italic font-400 draw-underline" style="color: var(--accent-dark);">light</em></div>
+        </h1>
+        <p class="text-xs sm:text-lg leading-relaxed mb-4 lg:mb-10 max-w-xl mx-auto lg:mx-0 hero-text-reveal" style="color: var(--muted);">
+          A boutique dental experience where artistry meets precision. We craft confident, radiant smiles through advanced care, personalized attention, and a calm designed around you.
+        </p>
+        <div class="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 mb-4 lg:mb-14 hero-text-reveal">
+          <a href="#contact" class="btn-primary !py-2.5 !px-5 sm:!py-4 sm:!px-8 text-xs sm:text-sm" data-magnetic><span>Book Your Visit</span> <i class="fa-solid fa-arrow-right text-xs"></i></a>
+          <a href="#services" class="btn-secondary !py-2.5 !px-5 sm:!py-4 sm:!px-8 text-xs sm:text-sm" data-magnetic><i class="fa-solid fa-tooth text-xs"></i> <span>Explore Services</span></a>
+        </div>
+        <div class="hero-text-reveal flex flex-wrap justify-center lg:justify-start items-center gap-6 mt-4 lg:mt-8 mb-4 lg:mb-14">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center text-white flex-shrink-0 shadow-sm" style="background: #E8956B;"><i class="fa-solid fa-tooth text-sm"></i></div>
+            <div class="text-left">
+              <div class="text-xs font-bold" style="color: var(--fg); font-family: 'Plus Jakarta Sans', sans-serif;">Comfortable Care</div>
+              <div class="text-[10px] font-medium" style="color: var(--muted); font-family: 'Plus Jakarta Sans', sans-serif;">Your Comfort Comes First</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center text-white flex-shrink-0 shadow-sm" style="background: linear-gradient(135deg, #2D8A6E, #143832);"><i class="fa-solid fa-shield-heart text-xs"></i></div>
+            <div class="text-left">
+              <div class="text-[11px] font-bold" style="color: var(--fg); font-family: 'Plus Jakarta Sans', sans-serif;">ADA Certified</div>
+              <div class="text-[9px] font-medium" style="color: var(--muted); font-family: 'Plus Jakarta Sans', sans-serif;">Sterile & Safe Care</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-6 relative mt-2 lg:mt-0">
+        <div class="relative max-w-[280px] sm:max-w-md mx-auto lg:max-w-none">
+          <div id="heroImageFrame" class="relative rounded-[30px] sm:rounded-[40px] overflow-hidden aspect-[4/5] hero-img-reveal" style="box-shadow: 0 20px 40px sm:0 40px 80px rgba(14, 42, 38, 0.2);">
+            <div class="hero-slider-container" id="desktopHeroSlider"></div>
+            <div class="absolute inset-0" style="background: linear-gradient(180deg, transparent 40%, rgba(14, 42, 38, 0.5) 100%); z-index: 2;"></div>
+            <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 text-white hero-frame-text" style="z-index: 4;">
+              <div class="text-[10px] sm:text-xs uppercase tracking-widest font-semibold opacity-80 mb-1">Patient Story</div>
+              <div class="font-display text-base sm:text-xl">"I've never felt this confident."</div>
+            </div>
+          </div>
+          <div class="relative mt-4 mx-auto w-full max-w-[280px] sm:max-w-[200px] bg-white rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-xl float-1 lg:absolute lg:-top-6 lg:-left-12 lg:mx-0 lg:mt-0 parallax z-10" data-speed="0.4" style="box-shadow: 0 10px 20px sm:0 20px 40px rgba(14, 42, 38, 0.12);">
+            <div class="flex justify-between items-center">
+              <div class="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2"><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i><i class="fa-solid fa-star star text-xs"></i></div>
+              <div class="text-lg sm:text-2xl font-display font-700" style="color: var(--fg);">4.9/5</div>
+            </div>
+            <div class="text-[10px] sm:text-xs" style="color: var(--muted);">2,400+ Google Reviews</div>
+          </div>
+          <div class="block lg:absolute lg:-bottom-6 lg:-left-8 mt-4 mx-auto w-full max-w-[280px] sm:w-[220px] rounded-xl sm:rounded-2xl p-3 sm:p-5 shadow-xl float-3 parallax z-10" data-speed="0.6" style="background: var(--bg-dark); color: var(--fg-light); box-shadow: 0 10px 20px sm:0 20px 40px rgba(14, 42, 38, 0.25);">
+            <div class="flex items-center gap-3 sm:gap-4 justify-center lg:justify-start">
+              <div><div class="font-display text-xl sm:text-3xl font-700" style="color: var(--accent);">15+</div><div class="text-[9px] uppercase tracking-wider opacity-70">Years</div></div>
+              <div class="w-px h-8 sm:h-10" style="background: var(--border-dark);"></div>
+              <div><div class="font-display text-xl sm:text-3xl font-700" style="color: var(--accent);">25+</div><div class="text-[9px] uppercase tracking-wider opacity-70">Specialists</div></div>
+            </div>
+          </div>
+          <div class="hidden lg:block absolute top-1/2 -right-12 w-[220px] bg-white rounded-2xl p-5 shadow-xl float-2 parallax z-10" data-speed="0.5" style="box-shadow: 0 20px 40px rgba(14, 42, 38, 0.12);">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: var(--bg-dark); color: var(--accent);"><i class="fa-solid fa-calendar-check"></i></div>
+              <div>
+                <div class="text-xs" style="color: var(--muted);">Next Available</div>
+                <div class="text-sm font-bold" style="color: var(--fg);">Today, 2:30 PM</div>
+              </div>
+            </div>
+            <div class="text-xs flex items-center gap-2" style="color: var(--accent-3);">
+              <span class="w-2 h-2 rounded-full pulse-dot" style="background: var(--accent-3);"></span>
+              <span class="font-semibold">Open now · Accepting patients</span>
+            </div>
+          </div>
+          <div class="hidden lg:block absolute -top-12 -right-12 w-24 h-24 rotate-slow opacity-40">
+            <svg viewBox="0 0 100 100" class="w-full h-full">
+              <defs><path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/></defs>
+              <text font-size="9" font-weight="600" fill="#C9A876" letter-spacing="2"><textPath href="#circle">LUMIRE • DENTAL STUDIO • EST 2009 • </textPath></text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile Layout -->
+    <div class="block lg:hidden w-full flex flex-col gap-5 pt-2 text-left relative z-10">
+      <div class="flex items-center gap-2 hero-text-reveal justify-start">
+        <div class="w-8 h-[2.5px]" style="background: #D97736;"></div>
+        <span class="text-[11px] font-bold uppercase tracking-wider" style="color: #D97736; font-family: 'Plus Jakarta Sans', sans-serif;">WELCOME TO LUMIRE DENTAL STUDIO</span>
+      </div>
+      <h1 class="font-display font-500 text-4xl sm:text-5xl leading-[1.08] tracking-tight text-left mb-3 hero-text-reveal" style="color: var(--fg); font-weight: 500;">
+        Where smiles<br>
+        find their 
+        <img src="https://z-cdn-media.chatglm.cn/files/b5316e64-d8a5-4f50-b129-fad158e8734a.png?auth_key=1886104883-a6a27dcbbc0f43a98b91a0637f3078f2-0-b0733be62ae3c0607f7a46e14f776766" alt="light" style="display: inline-block; height: 2.8rem; vertical-align: middle; margin-bottom: 0.3rem; margin-left: 0.2rem;">
+      </h1>
+      <p class="text-xs sm:text-sm leading-relaxed text-left max-w-xl hero-text-reveal mb-1" style="color: var(--muted); font-family: 'Plus Jakarta Sans', sans-serif;">
+        A boutique dental experience where artistry meets precision. We craft confident, radiant smiles through advanced care, personalized attention, and a calm designed around you.
+      </p>
+      <div class="flex flex-col items-start gap-2.5 hero-text-reveal w-full">
+        <a href="#contact" class="w-fit py-3 px-10 rounded-full font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2.5 text-white shadow-md transition-all active:scale-95" style="background: var(--bg-dark); font-family: 'Plus Jakarta Sans', sans-serif;"><span>Book Your Visit</span> <i class="fa-solid fa-arrow-right text-xs"></i></a>
+        <a href="#services" class="w-fit py-3 px-10 rounded-full font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2.5 border shadow-xs transition-all active:scale-95" style="background: rgba(255, 255, 255, 0.85); border-color: var(--border); color: var(--fg); font-family: 'Plus Jakarta Sans', sans-serif;"><i class="fa-solid fa-tooth text-xs"></i> <span>Explore Services</span></a>
+      </div>
+      
+      <div class="hero-text-reveal flex flex-row items-center justify-between gap-4 w-full px-1 mt-2">
+        <div class="flex items-center gap-2 flex-1 min-w-0">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white flex-shrink-0" style="background: #E8956B;"><i class="fa-solid fa-tooth text-sm"></i></div>
+          <div class="text-left flex-1 min-w-0">
+            <div class="text-[11px] font-bold leading-tight" style="color: var(--fg); font-family: 'Plus Jakarta Sans', sans-serif;">Comfortable Care</div>
+            <div class="text-[9px] font-medium leading-tight" style="color: var(--muted); font-family: 'Plus Jakarta Sans', sans-serif;">Your Comfort Comes First</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 flex-1 min-w-0">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background: #E3F2ED; color: #2D8A6E;"><i class="fa-solid fa-circle-check text-sm"></i></div>
+          <div class="text-left flex-1 min-w-0">
+            <div class="text-[11px] font-bold leading-tight" style="color: var(--fg); font-family: 'Plus Jakarta Sans', sans-serif;">ADA Certified</div>
+            <div class="text-[9px] font-medium leading-tight" style="color: var(--muted); font-family: 'Plus Jakarta Sans', sans-serif;">Sterile & Safe Care</div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="mobileHeroFrame" class="relative rounded-[28px] overflow-hidden shadow-xl border-2 border-white/80 aspect-[4/3] w-full hero-img-reveal">
+        <div class="hero-slider-container" id="mobileHeroSlider"></div>
+        <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(14, 42, 38, 0.55) 100%); z-index: 2;"></div>
+        <div class="absolute top-3 left-3 bg-white/95 rounded-xl p-2.5 shadow-xl border border-white/60 text-left float-1 z-20" style="box-shadow: 0 10px 25px rgba(14, 42, 38, 0.12);">
+          <div class="flex gap-1 text-[9px] text-amber-500 mb-0.5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <div class="text-lg font-display font-700 leading-tight" style="color: var(--fg);">4.9/5</div>
+          <div class="text-[8px] font-medium" style="color: var(--muted);">2,400+ Google Reviews</div>
+        </div>
+        <div class="absolute bottom-3 right-3 bg-white/95 rounded-xl p-2.5 shadow-xl border border-white/60 text-left max-w-[160px] float-2 z-20" style="box-shadow: 0 10px 25px rgba(14, 42, 38, 0.12);">
+          <div class="flex items-center gap-2 mb-1">
+            <div class="w-7 h-7 rounded-lg flex items-center justify-center text-white flex-shrink-0" style="background: var(--bg-dark);"><i class="fa-solid fa-calendar-days text-[10px]"></i></div>
+            <div>
+              <div class="text-[8px] font-medium" style="color: var(--muted);">Next Available</div>
+              <div class="text-[11px] font-bold leading-tight" style="color: var(--fg);">Today, 2:30 PM</div>
+            </div>
+          </div>
+          <div class="text-[8px] flex items-center gap-1 font-semibold text-emerald-600">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Open now · Accepting</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="rounded-[20px] p-4 shadow-xl flex items-center justify-between gap-3 text-white w-full hero-text-reveal" style="background: var(--bg-dark);">
+        <div class="flex items-center gap-2.5 flex-1 justify-center text-left">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center text-white shadow-md flex-shrink-0" style="background: linear-gradient(135deg, #E8956B, #E66060);"><i class="fa-solid fa-calendar-days text-sm"></i></div>
+          <div>
+            <div class="font-display text-xl font-700 leading-none" style="color: #F5C58A;">15+</div>
+            <div class="text-[8px] font-bold uppercase tracking-wider opacity-85 mt-0.5">YEARS OF TRUST</div>
+          </div>
+        </div>
+        <div class="w-px h-8 bg-white/20"></div>
+        <div class="flex items-center gap-2.5 flex-1 justify-center text-left">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center text-white shadow-md flex-shrink-0" style="background: linear-gradient(135deg, #2D8A6E, #143832);"><i class="fa-solid fa-user-group text-sm"></i></div>
+          <div>
+            <div class="font-display text-xl font-700 leading-none" style="color: #F5C58A;">25+</div>
+            <div class="text-[8px] font-bold uppercase tracking-wider opacity-85 mt-0.5">SPECIALISTS & EXPERTS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-6 border-y overflow-hidden" style="background: var(--bg-dark); border-color: var(--bg-dark-2);">
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="font-display text-2xl text-white/90 italic">Welcome to Lumire Dental Studio</span><span class="text-2xl" style="color: var(--accent);">✦</span>
+      <span class="font-display text-2xl text-white/90 italic">Where Smiles Find Their Light</span><span class="text-2xl" style="color: var(--accent);">✦</span>
+      <span class="font-display text-2xl text-white/90 italic">A Sanctuary of Dental Artistry</span><span class="text-2xl" style="color: var(--accent);">✦</span>
+    </div>
+    <div class="marquee-track" aria-hidden="true">
+      <span class="font-display text-2xl text-white/90 italic">Welcome to Lumire Dental Studio</span><span class="text-2xl" style="color: var(--accent);">✦</span>
+      <span class="font-display text-2xl text-white/90 italic">Where Smiles Find Their Light</span><span class="text-2xl" style="color: var(--accent);">✦</span>
+      <span class="font-display text-2xl text-white/90 italic">A Sanctuary of Dental Artistry</span><span class="text-2xl" style="color: var(--accent);">✦</span>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="relative pt-28 lg:pt-36 pb-28 lg:pb-36 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="relative">
+        <div class="grid grid-cols-2 gap-5">
+          <div class="space-y-5">
+            <div class="rounded-3xl overflow-hidden aspect-[3/4] img-reveal"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover" alt="Lumire Clinic Interior" loading="lazy" decoding="async"></div>
+            <div class="rounded-3xl overflow-hidden aspect-square img-reveal"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover" alt="Doctor at work" loading="lazy" decoding="async"></div>
+          </div>
+          <div class="pt-12">
+            <div class="rounded-3xl overflow-hidden aspect-square mb-5 img-reveal"><img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover" alt="Technology" loading="lazy" decoding="async"></div>
+            <div class="rounded-3xl p-6 text-center reveal" style="background: var(--bg-dark); color: var(--fg-light);"><div class="font-display text-5xl font-700 mb-1" style="color: var(--accent);">98%</div><div class="text-xs uppercase tracking-widest opacity-80">Patient Satisfaction</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="deco-line mb-6 reveal">About Lumire</div>
+        <h2 class="font-display text-[clamp(2.2rem,4vw,3.8rem)] font-500 leading-[1.05] tracking-tight mb-8" style="color: var(--fg);">
+          <div class="reveal-text"><span>A studio built around</span></div>
+          <div class="reveal-text delay-1"><span><em class="italic font-400" style="color: var(--accent-dark);">your comfort</em></span></div>
+        </h2>
+        <p class="text-lg leading-relaxed mb-6 reveal" style="color: var(--muted);">Founded in 2009 by Dr. Elena Voss, Lumire began with a simple belief — dental care should feel less like a procedure and more like a ritual of self-care. Our studio blends the calm of a spa, the precision of a laboratory, and the warmth of a familiar face.</p>
+        <p class="text-base leading-relaxed mb-10 reveal reveal-delay-1" style="color: var(--muted);">Every detail, from the scent in the air to the technology in our hands, is chosen with intention. We don't just treat teeth — we craft experiences that change how you feel about the dentist.</p>
+        <div class="grid sm:grid-cols-2 gap-5 mb-10">
+          <div class="flex gap-4 reveal"><div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(91, 138, 122, 0.15); color: var(--accent-3);"><i class="fa-solid fa-heart-pulse"></i></div><div><h4 class="font-bold mb-1" style="color: var(--fg);">Gentle Approach</h4><p class="text-sm" style="color: var(--muted);">Painless techniques for anxious patients.</p></div></div>
+          <div class="flex gap-4 reveal reveal-delay-1"><div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(201, 168, 118, 0.15); color: var(--accent-dark);"><i class="fa-solid fa-microscope"></i></div><div><h4 class="font-bold mb-1" style="color: var(--fg);">Advanced Tech</h4><p class="text-sm" style="color: var(--muted);">3D imaging, digital scans, laser dentistry.</p></div></div>
+          <div class="flex gap-4 reveal reveal-delay-2"><div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(232, 149, 107, 0.15); color: var(--accent-2);"><i class="fa-solid fa-user-check"></i></div><div><h4 class="font-bold mb-1" style="color: var(--fg);">Personalized Plans</h4><p class="text-sm" style="color: var(--muted);">Treatment designed around your life.</p></div></div>
+          <div class="flex gap-4 reveal reveal-delay-3"><div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(91, 138, 122, 0.15); color: var(--accent-3);"><i class="fa-solid fa-leaf"></i></div><div><h4 class="font-bold mb-1" style="color: var(--fg);">Spa-Like Calm</h4><p class="text-sm" style="color: var(--muted);">Aromatherapy, blankets, noise-canceling.</p></div></div>
+        </div>
+        <a href="#services" class="inline-flex items-center gap-3 font-bold border-b-2 pb-1 transition-colors reveal" style="color: var(--fg); border-color: var(--accent);">Discover our Services <i class="fa-solid fa-arrow-right text-sm"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="timeline-services-section relative py-24 lg:py-32">
+  <div class="timeline-bg-stars"></div>
+  <div class="gold-flare-tl"></div>
+  <div class="gold-flare-br"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16" id="services-header">
+      <div class="deco-line center justify-center mb-4" style="color: #FFD76A;">✦ OUR EXPERT SERVICES ✦</div>
+      <h2 class="font-display text-[clamp(2.2rem,4.5vw,3.8rem)] font-500 leading-[1.08] tracking-tight mb-5 text-white" id="services-title">
+        Comprehensive care,<br>
+        <em class="italic font-400" style="color: #FFD76A;">crafted</em> for you
+      </h2>
+      <p class="text-base sm:text-lg leading-relaxed text-white/70" id="services-subtitle">From preventive cleanings to full smile transformations, our specialists deliver every treatment with artistry, precision, and luxury comfort.</p>
+    </div>
+    <div class="timeline-container relative py-4" id="timelineContainer">
+      <div class="timeline-central-axis"></div>
+      <div class="timeline-central-axis-fill" id="timelineAxisFill"></div>
+      <div class="timeline-traveling-orb" id="timelineOrb"></div>
+      <div class="timeline-row timeline-row-left timeline-item" data-index="0">
+        <div class="timeline-node-dot"></div><div class="timeline-branch-line"></div>
+        <div class="timeline-box">
+          <div class="flex items-center gap-5">
+            <div class="timeline-icon-frame"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-display text-xl lg:text-2xl font-600 text-white leading-tight mb-2 tracking-tight">Teeth Whitening</h3>
+              <p class="text-xs sm:text-sm text-white/70 font-light leading-relaxed mb-1 tracking-wide">Professional-grade whitening treatments that brighten your smile by up to 8 shades in a single session.</p>
+              <div class="mt-2 text-[11px] font-semibold text-[#FFD76A] flex items-center gap-1.5 opacity-90"><span class="inline-block w-1.5 h-1.5 rounded-full bg-[#FFD76A] animate-pulse"></span><span>From $299</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-row timeline-row-right timeline-item" data-index="1">
+        <div class="timeline-node-dot"></div><div class="timeline-branch-line"></div>
+        <div class="timeline-box">
+          <div class="flex items-center gap-5">
+            <div class="timeline-icon-frame"><i class="fa-solid fa-tooth"></i></div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-display text-xl lg:text-2xl font-600 text-white leading-tight mb-2 tracking-tight">General Dentistry</h3>
+              <p class="text-xs sm:text-sm text-white/70 font-light leading-relaxed mb-1 tracking-wide">Comprehensive checkups, cleanings, fillings, and preventive care to keep your smile healthy year-round.</p>
+              <div class="mt-2 text-[11px] font-semibold text-[#FFD76A] flex items-center gap-1.5 opacity-90"><span class="inline-block w-1.5 h-1.5 rounded-full bg-[#FFD76A] animate-pulse"></span><span>From $99</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-row timeline-row-left timeline-item" data-index="2">
+        <div class="timeline-node-dot"></div><div class="timeline-branch-line"></div>
+        <div class="timeline-box">
+          <div class="flex items-center gap-5">
+            <div class="timeline-icon-frame"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-display text-xl lg:text-2xl font-600 text-white leading-tight mb-2 tracking-tight">Dental Implants</h3>
+              <p class="text-xs sm:text-sm text-white/70 font-light leading-relaxed mb-1 tracking-wide">Permanent, natural-looking tooth replacements that restore full functionality and your confident smile.</p>
+              <div class="mt-2 text-[11px] font-semibold text-[#FFD76A] flex items-center gap-1.5 opacity-90"><span class="inline-block w-1.5 h-1.5 rounded-full bg-[#FFD76A] animate-pulse"></span><span>From $2,400</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-row timeline-row-right timeline-item" data-index="3">
+        <div class="timeline-node-dot"></div><div class="timeline-branch-line"></div>
+        <div class="timeline-box">
+          <div class="flex items-center gap-5">
+            <div class="timeline-icon-frame"><i class="fa-solid fa-grip-lines"></i></div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-display text-xl lg:text-2xl font-600 text-white leading-tight mb-2 tracking-tight">Orthodontics & Invisalign</h3>
+              <p class="text-xs sm:text-sm text-white/70 font-light leading-relaxed mb-1 tracking-wide">Modern braces and clear aligner systems to straighten teeth discreetly and achieve lasting alignment.</p>
+              <div class="mt-2 text-[11px] font-semibold text-[#FFD76A] flex items-center gap-1.5 opacity-90"><span class="inline-block w-1.5 h-1.5 rounded-full bg-[#FFD76A] animate-pulse"></span><span>From $3,800</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-row timeline-row-left timeline-item" data-index="4">
+        <div class="timeline-node-dot"></div><div class="timeline-branch-line"></div>
+        <div class="timeline-box">
+          <div class="flex items-center gap-5">
+            <div class="timeline-icon-frame"><i class="fa-solid fa-gem"></i></div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-display text-xl lg:text-2xl font-600 text-white leading-tight mb-2 tracking-tight">Cosmetic Dentistry</h3>
+              <p class="text-xs sm:text-sm text-white/70 font-light leading-relaxed mb-1 tracking-wide">Veneers, bonding, and smile makeovers designed to enhance the natural beauty of your teeth.</p>
+              <div class="mt-2 text-[11px] font-semibold text-[#FFD76A] flex items-center gap-1.5 opacity-90"><span class="inline-block w-1.5 h-1.5 rounded-full bg-[#FFD76A] animate-pulse"></span><span>From $350</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-row timeline-row-right timeline-item" data-index="5">
+        <div class="timeline-node-dot"></div><div class="timeline-branch-line"></div>
+        <div class="timeline-box">
+          <div class="flex items-center gap-5">
+            <div class="timeline-icon-frame"><i class="fa-solid fa-life-ring"></i></div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-display text-xl lg:text-2xl font-600 text-white leading-tight mb-2 tracking-tight">Emergency Care</h3>
+              <p class="text-xs sm:text-sm text-white/70 font-light leading-relaxed mb-1 tracking-wide">Same-day emergency appointments for dental pain, broken teeth, or urgent oral health concerns.</p>
+              <div class="mt-2 text-[11px] font-semibold text-[#FFD76A] flex items-center gap-1.5 opacity-90"><span class="inline-block w-1.5 h-1.5 rounded-full bg-[#FFD76A] animate-pulse"></span><span>24/7 Care</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-row timeline-row-left timeline-item" data-index="6">
+        <div class="timeline-node-dot"></div><div class="timeline-branch-line"></div>
+        <div class="timeline-box">
+          <div class="flex items-center gap-5">
+            <div class="timeline-icon-frame"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-display text-xl lg:text-2xl font-600 text-white leading-tight mb-2 tracking-tight">Root Canal Therapy</h3>
+              <p class="text-xs sm:text-sm text-white/70 font-light leading-relaxed mb-1 tracking-wide">Gentle, precise endodontic treatment that saves natural teeth and relieves pain effectively.</p>
+              <div class="mt-2 text-[11px] font-semibold text-[#FFD76A] flex items-center gap-1.5 opacity-90"><span class="inline-block w-1.5 h-1.5 rounded-full bg-[#FFD76A] animate-pulse"></span><span>From $900</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-row timeline-row-right timeline-item" data-index="7">
+        <div class="timeline-node-dot"></div><div class="timeline-branch-line"></div>
+        <div class="timeline-box">
+          <div class="flex items-center gap-5">
+            <div class="timeline-icon-frame"><i class="fa-solid fa-moon"></i></div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-display text-xl lg:text-2xl font-600 text-white leading-tight mb-2 tracking-tight">TMJ & Sleep Therapy</h3>
+              <p class="text-xs sm:text-sm text-white/70 font-light leading-relaxed mb-1 tracking-wide">Advanced solutions for jaw pain, grinding, and sleep apnea with custom medical appliances.</p>
+              <div class="mt-2 text-[11px] font-semibold text-[#FFD76A] flex items-center gap-1.5 opacity-90"><span class="inline-block w-1.5 h-1.5 rounded-full bg-[#FFD76A] animate-pulse"></span><span>From $650</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="consultation-cta" class="mt-14 rounded-3xl p-8 lg:p-12 flex flex-col lg:flex-row items-center justify-between gap-6 relative overflow-hidden" style="background: linear-gradient(135deg, rgba(20, 40, 34, 0.95), rgba(9, 19, 16, 0.98)); border: 1px solid rgba(255, 215, 106, 0.4); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);">
+      <div class="flex items-center gap-5 relative z-10">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #FFD76A, #D4AF37); color: #091310; box-shadow: 0 0 20px rgba(255, 215, 106, 0.4);"><i class="fa-solid fa-headset text-xl"></i></div>
+        <div><h4 class="font-display text-2xl font-600 text-white mb-1">Not sure which treatment you need?</h4><p class="text-sm text-white/75">Book a complimentary consultation with our specialists today.</p></div>
+      </div>
+      <a href="#contact" class="btn-light whitespace-nowrap relative z-10" data-magnetic style="background: linear-gradient(135deg, #FFD76A, #D4AF37); color: #091310; border: none; font-weight: 700;"><span>Free Consultation</span><i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+  <div class="bottom-gold-waves">
+    <svg viewBox="0 0 1440 160" class="w-full h-full" preserveAspectRatio="none">
+      <path d="M0,110 Q360,35 720,95 T1440,55 L1440,160 L0,160 Z" fill="url(#goldWaveGrad)" opacity="0.15"/>
+      <path d="M0,80 Q400,150 800,75 T1440,110 L1440,160 L0,160 Z" fill="url(#goldWaveGrad)" opacity="0.08"/>
+      <defs><linearGradient id="goldWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFD76A"/><stop offset="50%" stop-color="#D4AF37"/><stop offset="100%" stop-color="#FFF0C2"/></linearGradient></defs>
+    </svg>
+  </div>
+</section>
+
+<section id="why" class="relative py-28 lg:py-36 overflow-hidden" style="background: var(--bg-dark); color: var(--fg-light);">
+  <div class="mesh-dark"></div><div class="noise"></div>
+  <svg class="botanical-deco" style="bottom: -50px; left: -50px; width: 400px; height: 800px; opacity: 0.05;" viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 0 C20 50 0 100 50 200 C80 150 100 100 50 0 Z" fill="#C9A876"/>
+    <path d="M50 0 V200" stroke="#C9A876" stroke-width="2"/>
+  </svg>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+      <div>
+        <div class="deco-line mb-6 reveal" style="color: var(--accent);">Why Lumire</div>
+        <h2 class="font-display text-[clamp(2.2rem,4vw,3.8rem)] font-500 leading-[1.05] tracking-tight">
+          <div class="reveal-text"><span>The difference is in</span></div>
+          <div class="reveal-text delay-1"><span><em class="italic font-400" style="color: var(--accent);">every detail</em></span></div>
+        </h2>
+      </div>
+      <div class="reveal reveal-delay-2"><p class="text-lg leading-relaxed opacity-80">We've reimagined what a dental visit can be. No more clinical anxiety, no more rushed appointments — just thoughtful, expert care designed around the way you want to feel.</p></div>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+      <div class="reveal text-center lg:text-left"><div class="stat-number text-4xl sm:text-5xl lg:text-6xl font-display font-700 mb-2" data-count="15">0</div><div class="text-xs sm:text-sm uppercase tracking-widest opacity-70">Years of Excellence</div></div>
+      <div class="reveal reveal-delay-1 text-center lg:text-left"><div class="stat-number text-4xl sm:text-5xl lg:text-6xl font-display font-700 mb-2" data-count="12000">0</div><div class="text-xs sm:text-sm uppercase tracking-widest opacity-70">Smiles Transformed</div></div>
+      <div class="reveal reveal-delay-2 text-center lg:text-left"><div class="stat-number text-4xl sm:text-5xl lg:text-6xl font-display font-700 mb-2" data-count="25">0</div><div class="text-xs sm:text-sm uppercase tracking-widest opacity-70">Expert Specialists</div></div>
+      <div class="reveal reveal-delay-3 text-center lg:text-left"><div class="stat-number text-4xl sm:text-5xl lg:text-6xl font-display font-700 mb-2" data-count="98">0</div><div class="text-xs sm:text-sm uppercase tracking-widest opacity-70">Satisfaction Rate %</div></div>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-24" id="featureGrid">
+      <div class="feature-card reveal"><div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: rgba(201, 168, 118, 0.15); color: var(--accent);"><i class="fa-solid fa-wand-magic-sparkles text-xl"></i></div><h4 class="font-display text-xl font-600 mb-3">Artisan Craftsmanship</h4><p class="text-sm opacity-75 leading-relaxed">Each restoration is hand-crafted and shade-matched by master ceramists for results that look beautifully natural.</p></div>
+      <div class="feature-card reveal reveal-delay-1"><div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: rgba(232, 149, 107, 0.15); color: var(--accent-2);"><i class="fa-solid fa-microchip text-xl"></i></div><h4 class="font-display text-xl font-600 mb-3">Cutting-Edge Tech</h4><p class="text-sm opacity-75 leading-relaxed">3D CBCT imaging, intraoral scanners, and same-day CEREC crowns mean fewer visits and better outcomes.</p></div>
+      <div class="feature-card reveal reveal-delay-2"><div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: rgba(91, 138, 122, 0.2); color: #8FB9AB;"><i class="fa-solid fa-spa text-xl"></i></div><h4 class="font-display text-xl font-600 mb-3">Spa-Like Comfort</h4><p class="text-sm opacity-75 leading-relaxed">Aromatherapy, weighted blankets, noise-canceling headphones, and a calming lounge redefine your visit.</p></div>
+      <div class="feature-card reveal reveal-delay-3"><div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: rgba(201, 168, 118, 0.15); color: var(--accent);"><i class="fa-solid fa-shield-halved text-xl"></i></div><h4 class="font-display text-xl font-600 mb-3">Transparent Pricing</h4><p class="text-sm opacity-75 leading-relaxed">Clear, upfront estimates and flexible financing options. No surprises — just honest, expert care.</p></div>
+    </div>
+    <div class="mb-24">
+      <h3 class="font-display text-3xl font-500 text-center mb-16 reveal">Your journey at <em class="italic" style="color: var(--accent);">Lumire</em></h3>
+      <div class="grid md:grid-cols-4 gap-8 relative">
+        <div class="hidden md:block absolute top-8 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, var(--accent) 20%, var(--accent) 80%, transparent); opacity: 0.3;"></div>
+        <div class="reveal text-center relative"><div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-5 relative z-10" style="background: var(--accent); color: var(--bg-dark);"><span class="font-display text-2xl font-700">1</span></div><h4 class="font-bold mb-2">Consultation</h4><p class="text-sm opacity-70">We listen, examine, and understand your goals.</p></div>
+        <div class="reveal reveal-delay-1 text-center relative"><div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-5 relative z-10" style="background: var(--accent); color: var(--bg-dark);"><span class="font-display text-2xl font-700">2</span></div><h4 class="font-bold mb-2">Custom Plan</h4><p class="text-sm opacity-70">A personalized treatment roadmap, clearly explained.</p></div>
+        <div class="reveal reveal-delay-2 text-center relative"><div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-5 relative z-10" style="background: var(--accent); color: var(--bg-dark);"><span class="font-display text-2xl font-700">3</span></div><h4 class="font-bold mb-2">Treatment</h4><p class="text-sm opacity-70">Gentle, precise care in our spa-like studio.</p></div>
+        <div class="reveal reveal-delay-3 text-center relative"><div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-5 relative z-10" style="background: var(--accent); color: var(--bg-dark);"><span class="font-display text-2xl font-700">4</span></div><h4 class="font-bold mb-2">Aftercare</h4><p class="text-sm opacity-70">Lifelong support to keep your smile radiant.</p></div>
+      </div>
+    </div>
+    
+    <!-- Ultra-Premium Animated FAQ Section -->
+    <div class="max-w-6xl mx-auto" id="faq-section">
+      <div class="grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-5">
+          <div class="lg:sticky lg:top-32">
+            <div class="deco-line mb-6 reveal" style="color: var(--accent);">Questions Answered</div>
+            <h2 class="font-display text-[clamp(2.2rem,4vw,3.8rem)] font-500 leading-[1.05] tracking-tight mb-6 reveal reveal-delay-1">
+              <div class="reveal-text"><span>Everything you</span></div>
+              <div class="reveal-text delay-1"><span><em class="italic font-400" style="color: var(--accent);">need to know</em></span></div>
+            </h2>
+            <p class="text-lg leading-relaxed opacity-80 mb-8 reveal reveal-delay-2">Your comfort is built on clarity. Explore some questions, and if you don't see yours, we're always just a message away.</p>
+            <div class="flex items-center gap-4 p-4 rounded-2xl reveal reveal-delay-3" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-dark);">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background: var(--accent); color: var(--bg-dark);"><i class="fa-solid fa-headset text-xl"></i></div>
+              <div>
+                <h4 class="font-bold text-sm">Still have questions?</h4>
+                <p class="text-xs opacity-70 mb-1">Our team is ready to help.</p>
+                <a href="#contact" class="text-xs font-bold" style="color: var(--accent);">Contact Us <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-7">
+          <div class="faq-card reveal">
+            <button class="faq-trigger">
+              <span class="faq-number">01</span>
+              <span>Do you accept dental insurance?</span>
+              <div class="faq-icon-wrap"></div>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-wrapper">
+                <div class="faq-content-inner">Yes! We're in-network with most major insurance providers including Delta Dental, Cigna, Aetna, MetLife, and Guardian. We also offer flexible financing through CareCredit and our in-house membership plan for uninsured patients.</div>
+              </div>
+            </div>
+          </div>
+          <div class="faq-card reveal reveal-delay-1">
+            <button class="faq-trigger">
+              <span class="faq-number">02</span>
+              <span>I have severe dental anxiety. Can you help?</span>
+              <div class="faq-icon-wrap"></div>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-wrapper">
+                <div class="faq-content-inner">Absolutely. Over 60% of our patients come to us with some level of dental anxiety. We offer sedation options, noise-canceling headphones, weighted blankets, aromatherapy, and a team specially trained in gentle, judgment-free care. You're in control every step of the way.</div>
+              </div>
+            </div>
+          </div>
+          <div class="faq-card reveal reveal-delay-2">
+            <button class="faq-trigger">
+              <span class="faq-number">03</span>
+              <span>How long does a smile makeover take?</span>
+              <div class="faq-icon-wrap"></div>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-wrapper">
+                <div class="faq-content-inner">Our signature Lumire Smile Makeover typically takes 3 visits over 4 weeks. This includes your initial consultation and digital smile design, preparation visit, and final placement. Complex cases involving implants or orthodontics may take longer — we'll give you a clear timeline during your consultation.</div>
+              </div>
+            </div>
+          </div>
+          <div class="faq-card reveal reveal-delay-3">
+            <button class="faq-trigger">
+              <span class="faq-number">04</span>
+              <span>Are you accepting new patients and children?</span>
+              <div class="faq-icon-wrap"></div>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-wrapper">
+                <div class="faq-content-inner">Yes! We are currently accepting new patients of all ages. We love seeing little ones and have a specialized pediatric environment with iPad ceilings and treasure chests to make dental visits something kids actually look forward to. We recommend first visits around age 1.</div>
+              </div>
+            </div>
+          </div>
+          <div class="faq-card reveal reveal-delay-4">
+            <button class="faq-trigger">
+              <span class="faq-number">05</span>
+              <span>What makes Lumire different from other clinics?</span>
+              <div class="faq-icon-wrap"></div>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-wrapper">
+                <div class="faq-content-inner">Lumire blends the calm of a luxury spa with the precision of an advanced laboratory. From hand-crafted, shade-matched restorations by master ceramists to same-day CEREC crowns and 3D CBCT imaging, every detail is designed to provide an unparalleled, comfortable experience that transforms how you feel about the dentist.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="relative py-28 lg:py-36 overflow-hidden" style="background: linear-gradient(135deg, #FDFBF7 0%, #F9F0DE 50%, #F1E4C9 100%);">
+  <div class="absolute top-10 left-1/4 w-96 h-96 morph-blob opacity-30" style="background: radial-gradient(circle, var(--accent), transparent 70%); filter: blur(70px);"></div>
+  <div class="absolute bottom-10 right-1/4 w-96 h-96 morph-blob opacity-25" style="background: radial-gradient(circle, var(--accent-2), transparent 70%); filter: blur(80px);"></div>
+  <svg class="botanical-deco reverse" style="top: 20%; left: -80px; width: 300px; height: 600px;" viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 0 C20 50 0 100 50 200 C80 150 100 100 50 0 Z" fill="rgba(91, 138, 122, 0.1)"/>
+    <path d="M50 0 V200" stroke="rgba(91, 138, 122, 0.2)" stroke-width="2"/>
+  </svg>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="deco-line center justify-center mb-6 reveal">Meet the Team</div>
+      <h2 class="font-display text-[clamp(2.2rem,4vw,3.8rem)] font-500 leading-[1.05] tracking-tight mb-6 reveal reveal-delay-1" style="color: var(--fg);">
+        <div class="reveal-text"><span>Specialists who</span></div>
+        <div class="reveal-text delay-1"><span><em class="italic font-400" style="color: var(--accent-dark);">genuinely care</em></span></div>
+      </h2>
+      <p class="text-lg leading-relaxed reveal reveal-delay-2" style="color: var(--muted);">Our multidisciplinary team brings together decades of combined experience, advanced training, and a shared commitment to treating every patient like family.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="team-card-3d reveal" data-tilt>
+        <div class="team-img"><img src="https://images.unsplash.com/photo-1612531386530-97286d97c2d2?auto=format&fit=crop&w=500&q=80" alt="Dr. Alex" loading="lazy" decoding="async"></div>
+        <div class="team-glare"></div><div class="team-badge">18 Yrs Exp</div>
+        <div class="team-info-drawer"><span class="role">Founder · Cosmetic Dentist</span><h4>Dr. Alex</h4></div>
+      </div>
+      <div class="team-card-3d reveal reveal-delay-1" data-tilt>
+        <div class="team-img"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=500&q=80" alt="Dr. Devin" loading="lazy" decoding="async"></div>
+        <div class="team-glare"></div><div class="team-badge">12 Yrs Exp</div>
+        <div class="team-info-drawer"><span class="role">Implant Specialist</span><h4>Dr. Devin</h4></div>
+      </div>
+      <div class="team-card-3d reveal-delay-2" data-tilt>
+        <div class="team-img"><img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=500&q=80" alt="Dr. David Smith" loading="lazy" decoding="async"></div>
+        <div class="team-glare"></div><div class="team-badge">10 Yrs Exp</div>
+        <div class="team-info-drawer"><span class="role">Orthodontist</span><h4>Dr. David Smith</h4></div>
+      </div>
+      <div class="team-card-3d reveal reveal-delay-3" data-tilt>
+        <div class="team-img"><img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=500&q=80" alt="Dr. Chorok" loading="lazy" decoding="async"></div>
+        <div class="team-glare"></div><div class="team-badge">8 Yrs Exp</div>
+        <div class="team-info-drawer"><span class="role">Pediatric Dentist</span><h4>Dr. Chorok</h4></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="relative py-28 lg:py-36">
+  <div class="gallery-glow"></div>
+  <div class="max-w-5xl mx-auto px-2 sm:px-6 lg:px-10 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="deco-line center justify-center mb-6 reveal">Smile Gallery</div>
+      <h2 class="font-display text-[clamp(2.2rem,4vw,3.8rem)] font-500 leading-[1.05] tracking-tight mb-6 reveal reveal-delay-1" style="color: var(--fg);">
+        <div class="reveal-text"><span>Transformations that</span></div>
+        <div class="reveal-text delay-1"><span><em class="italic font-400" style="color: var(--accent-dark);">speak</em> for themselves</span></div>
+      </h2>
+      <p class="text-lg leading-relaxed reveal reveal-delay-2" style="color: var(--muted);">Drag the slider to reveal the difference. Real patients, real smiles crafted with intention at Lumire.</p>
+    </div>
+    <div class="max-w-4xl mx-auto reveal reveal-delay-1">
+      <div class="relative group">
+        <div id="baFrame" class="ba-frame">
+          <div id="baAfter" class="ba-layer ba-layer-after"></div>
+          <div id="baBefore" class="ba-layer ba-layer-before"></div>
+          <div class="ba-label ba-label-before">Before</div>
+          <div class="ba-label ba-label-after">After</div>
+          <div id="baHandle" class="ba-handle"><div class="ba-grip"><i class="fa-solid fa-left-right"></i></div></div>
+        </div>
+        <button id="galleryPrev" class="gallery-arrow left-2 sm:left-4 md:-left-6 group-hover:left-2" aria-label="Previous"><i class="fa-solid fa-chevron-left text-lg"></i></button>
+        <button id="galleryNext" class="gallery-arrow right-2 sm:right-4 md:-right-6 group-hover:right-2" aria-label="Next"><i class="fa-solid fa-chevron-right text-lg"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="relative py-28 lg:py-36 overflow-hidden" style="background: var(--bg-dark); color: var(--fg-light);">
+  <div class="mesh-dark"></div><div class="noise"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10 mb-16">
+    <div class="text-center max-w-3xl mx-auto">
+      <div class="deco-line center justify-center mb-6 reveal">Patient Stories</div>
+      <h2 class="font-display text-[clamp(2.2rem,4vw,3.8rem)] font-500 leading-[1.05] tracking-tight mb-6 reveal reveal-delay-1">
+        <div class="reveal-text"><span>What our</span></div>
+        <div class="reveal-text delay-1"><span><em class="italic font-400" style="color: var(--accent);">patients say</em></span></div>
+      </h2>
+      <p class="text-lg leading-relaxed reveal reveal-delay-2 opacity-80">Real words from real patients who found their light at Lumire. Their stories are why we do what we do.</p>
+    </div>
+  </div>
+  <div class="t-slider-wrapper reveal reveal-delay-3">
+    <button class="t-arrow t-arrow-prev"><i class="fa-solid fa-chevron-left"></i></button>
+    <div class="t-slider-stage">
+      <div class="t-slide-card active"><div class="t-quote-3d">"</div><div class="t-stars-3d"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>I've been terrified of dentists my whole life. Lumire changed that completely. The team made me feel safe, heard, and genuinely cared for.</p><div class="t-footer-3d"><h4>Sarah Mitchell</h4></div></div>
+      <div class="t-slide-card"><div class="t-quote-3d">"</div><div class="t-stars-3d"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>After two implants and a whitening session, I finally have the smile I dreamed of at 55. The technology they use is incredible!</p><div class="t-footer-3d"><h4>James Carter</h4></div></div>
+      <div class="t-slide-card"><div class="t-quote-3d">"</div><div class="t-stars-3d"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>My kids actually ask to go to the dentist now. The pediatric team is magical — patient, warm, and so good with little ones.</p><div class="t-footer-3d"><h4>Emily Rodriguez</h4></div></div>
+      <div class="t-slide-card"><div class="t-quote-3d">"</div><div class="t-stars-3d"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>Invisalign at Lumire was the best decision I made last year. The 3D scan showed me my final result before I even started.</p><div class="t-footer-3d"><h4>Michael Chen</h4></div></div>
+      <div class="t-slide-card"><div class="t-quote-3d">"</div><div class="t-stars-3d"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>The root canal procedure was entirely painless. Dr. Chen explained every step, and I felt completely at ease throughout the entire process.</p><div class="t-footer-3d"><h4>Linda Davis</h4></div></div>
+      <div class="t-slide-card"><div class="t-quote-3d">"</div><div class="t-stars-3d"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>Lumire gave me a smile I’m proud to show off. The veneers look so natural that no one believes they aren't my real teeth!</p><div class="t-footer-3d"><h4>Alex Weaver</h4></div></div>
+      <div class="t-slide-card"><div class="t-quote-3d">"</div><div class="t-stars-3d"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>Brought my son in for his first checkup, and the staff was incredibly welcoming. He didn't want to leave! Highly recommend for families.</p><div class="t-footer-3d"><h4>Priya Patel</h4></div></div>
+      <div class="t-slide-card"><div class="t-quote-3d">"</div><div class="t-stars-3d"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>The cosmetic dentistry results exceeded my expectations. The attention to detail and care for patient comfort is unmatched in the city.</p><div class="t-footer-3d"><h4>David Kim</h4></div></div>
+    </div>
+    <button class="t-arrow t-arrow-next"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="t-dots"><span class="t-dot active"></span><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span></div>
+  </div>
+</section>
+
+<section id="contact" class="relative py-28 lg:py-36">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="deco-line center justify-center mb-6 reveal">Visit Us</div>
+      <h2 class="font-display text-[clamp(2.2rem,4vw,3.8rem)] font-500 leading-[1.05] tracking-tight mb-6 reveal reveal-delay-1" style="color: var(--fg);">
+        <div class="reveal-text"><span>Let's begin your</span></div>
+        <div class="reveal-text delay-1"><span><em class="italic font-400" style="color: var(--accent-dark);">smile story</em></span></div>
+      </h2>
+      <p class="text-lg leading-relaxed reveal reveal-delay-2" style="color: var(--muted);">Book a visit, ask a question, or simply stop by. We can't wait to welcome you to Lumire.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto reveal reveal-delay-2">
+      <div class="rounded-3xl p-8 lg:p-10 h-full flex flex-col" style="background: var(--bg-dark); color: var(--fg-light); box-shadow: 0 20px 50px rgba(14, 42, 38, 0.15);">
+        <h4 class="font-display text-2xl font-600 mb-8">Get in touch</h4>
+        <div class="space-y-6 flex-grow">
+          <a href="https://maps.google.com" target="_blank" class="flex items-center gap-4 group">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(201, 168, 118, 0.15); color: var(--accent);"><i class="fa-solid fa-location-dot text-lg"></i></div>
+            <div><div class="text-xs uppercase tracking-widest opacity-60 mb-1">Visit</div><div class="font-semibold group-hover:text-[var(--accent)] transition-colors text-base leading-relaxed">128 Aurora Avenue, Suite 200<br>San Francisco, CA 94103</div></div>
+          </a>
+          <a href="tel:+15551234567" class="flex items-center gap-4 group">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(201, 168, 118, 0.15); color: var(--accent);"><i class="fa-solid fa-phone text-lg"></i></div>
+            <div><div class="text-xs uppercase tracking-widest opacity-60 mb-1">Call</div><div class="font-semibold group-hover:text-[var(--accent)] transition-colors text-base">+1 (555) 123-4567</div></div>
+          </a>
+          <a href="mailto:hello@lumire.dental" class="flex items-center gap-4 group">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(201, 168, 118, 0.15); color: var(--accent);"><i class="fa-solid fa-envelope text-lg"></i></div>
+            <div><div class="text-xs uppercase tracking-widest opacity-60 mb-1">Email</div><div class="font-semibold group-hover:text-[var(--accent)] transition-colors text-base">hello@lumire.dental</div></div>
+          </a>
+        </div>
+        <div class="mt-8 pt-8 border-t" style="border-color: var(--border-dark);">
+          <div class="text-xs uppercase tracking-widest opacity-60 mb-4">Office Hours</div>
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between"><span>Monday — Thursday</span><span class="font-semibold text-white">8:00 AM — 6:00 PM</span></div>
+            <div class="flex justify-between"><span>Friday</span><span class="font-semibold text-white">8:00 AM — 4:00 PM</span></div>
+            <div class="flex justify-between"><span>Saturday</span><span class="font-semibold text-white">9:00 AM — 2:00 PM</span></div>
+            <div class="flex justify-between opacity-50"><span>Sunday</span><span>Closed</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-8">
+        <div class="map-wrapper h-72 flex-grow">
+          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-122.4194,37.7749,-122.4094,37.7849&layer=mapnik&marker=37.7799,-122.4144" class="w-full h-full border-0" loading="lazy" title="Lumire Dental Clinic Location"></iframe>
+          <div class="absolute top-4 left-4 bg-white rounded-xl p-3 shadow-lg flex items-center gap-3 max-w-[200px]">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: var(--accent); color: var(--bg-dark);"><i class="fa-solid fa-location-dot"></i></div>
+            <div><div class="font-bold text-sm" style="color: var(--fg);">Lumire Dental</div><div class="text-xs" style="color: var(--muted);">Aurora Avenue, SF</div></div>
+          </div>
+        </div>
+        <div class="rounded-3xl p-6 lg:p-8 flex items-center gap-5 shadow-lg" style="background: rgba(232, 149, 107, 0.1); border: 1px solid rgba(232, 149, 107, 0.3);">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0" style="background: var(--accent-2); color: white;"><i class="fa-solid fa-bolt text-xl"></i></div>
+          <div><div class="font-bold text-lg mb-1" style="color: var(--fg);">Dental Emergency?</div><div class="text-sm" style="color: var(--muted);">Call us 24/7 at <span class="font-bold text-base" style="color: var(--accent-dark);">+1 (555) 911-0000</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="relative pt-20 pb-10 overflow-hidden" style="background: var(--bg-dark); color: var(--fg-light);">
+  <div class="mesh-dark"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
+      <div class="lg:col-span-2"><a href="#home" class="flex items-center gap-3 mb-6"><svg viewBox="0 0 40 40" class="w-11 h-11"><defs><linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C9A876"/><stop offset="100%" stop-color="#E8956B"/></linearGradient></defs><path d="M20 4 C12 4, 6 10, 6 18 C6 24, 8 28, 10 32 C11 34, 13 36, 15 34 C16 33, 16 30, 17 27 C18 24, 22 24, 23 27 C24 30, 24 33, 25 34 C27 36, 29 34, 30 32 C32 28, 34 24, 34 18 C34 10, 28 4, 20 4 Z" fill="url(#footerLogoGrad)"/><circle cx="20" cy="16" r="3" fill="#0E2A26" opacity="0.7"/></svg><div><div class="font-display text-2xl font-700">Lumire</div><div class="text-[10px] tracking-[0.2em] uppercase font-semibold -mt-1 opacity-60">Dental Studio</div></div></a><p class="text-sm opacity-70 leading-relaxed mb-6 max-w-sm">A boutique dental studio crafting confident smiles through artistry, technology, and genuinely human care since 2009.</p></div>
+      <div><h5 class="font-bold text-sm uppercase tracking-widest mb-5" style="color: var(--accent);">Explore</h5><ul class="space-y-3 text-sm"><li><a href="#home" class="opacity-70 hover:opacity-100 transition-opacity">Home</a></li><li><a href="#about" class="opacity-70 hover:opacity-100 transition-opacity">About Us</a></li><li><a href="#services" class="opacity-70 hover:opacity-100 transition-opacity">Services</a></li><li><a href="#gallery" class="opacity-70 hover:opacity-100 transition-opacity">Gallery</a></li><li><a href="#testimonials" class="opacity-70 hover:opacity-100 transition-opacity">Testimonials</a></li></ul></div>
+      <div><h5 class="font-bold text-sm uppercase tracking-widest mb-5" style="color: var(--accent);">Services</h5><ul class="space-y-3 text-sm"><li><a href="#services" class="opacity-70 hover:opacity-100 transition-opacity">Cosmetic Dentistry</a></li><li><a href="#services" class="opacity-70 hover:opacity-100 transition-opacity">Dental Implants</a></li><li><a href="#services" class="opacity-70 hover:opacity-100 transition-opacity">Invisalign</a></li><li><a href="#services" class="opacity-70 hover:opacity-100 transition-opacity">Teeth Whitening</a></li><li><a href="#services" class="opacity-70 hover:opacity-100 transition-opacity">Pediatric Care</a></li></ul></div>
+      <div><h5 class="font-bold text-sm uppercase tracking-widest mb-5" style="color: var(--accent);">Contact</h5><ul class="space-y-3 text-sm"><li class="opacity-70">128 Aurora Avenue<br>Suite 200, San Francisco</li><li><a href="tel:+15551234567" class="opacity-70 hover:opacity-100 transition-opacity">+1 (555) 123-4567</a></li><li><a href="mailto:hello@lumire.dental" class="opacity-70 hover:opacity-100 transition-opacity">hello@lumire.dental</a></li><li class="opacity-70">Mon–Sat: 8AM – 6PM</li></ul></div>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t text-xs" style="border-color: var(--border-dark); color: rgba(245, 241, 234, 0.5);"><div>© 2024 Lumire Dental Studio. All rights reserved. Crafted with care.</div><div class="flex gap-6"><a href="#" class="hover:text-[var(--accent)] transition-colors">Privacy Policy</a><a href="#" class="hover:text-[var(--accent)] transition-colors">Terms of Service</a><a href="#" class="hover:text-[var(--accent)] transition-colors">Accessibility</a></div></div>
+    <div class="footer-brand-huge">Lumire</div>
+  </div>
+</footer>
+
+<div class="chatbot-fab" id="chatbotFab">
+  <svg class="robot-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="botFaceGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C9A876"/><stop offset="100%" stop-color="#E8956B"/></linearGradient></defs>
+    <rect x="22" y="24" width="56" height="52" rx="16" stroke="url(#botFaceGrad)" stroke-width="5" fill="none"/>
+    <circle cx="39" cy="46" r="5.5" fill="url(#botFaceGrad)" class="bot-eye-left"/>
+    <circle cx="61" cy="46" r="5.5" fill="url(#botFaceGrad)" class="bot-eye-right"/>
+    <path d="M38 58 Q50 67 62 58" stroke="url(#botFaceGrad)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+    <circle cx="74" cy="24" r="8" class="bot-notification-bg" />
+    <g class="pulse-green-dot"><circle cx="74" cy="24" r="12" fill="rgba(46, 213, 115, 0.25)"/><circle cx="74" cy="24" r="6" fill="#2ed573"/></g>
+  </svg>
+</div>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="bot-info">
+      <div><div class="bot-name">Lumire Assistant</div><div class="bot-status">Online</div></div>
+    </div>
+    <div class="header-controls">
+      <div class="lang-switcher"><button class="lang-btn active-lang" id="langEn">EN</button><button class="lang-btn" id="langBn">বাং</button></div>
+      <button class="chat-close-btn" id="chatCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-footer">
+    <div class="quick-replies" id="quickReplies"></div>
+    <div class="chat-input-wrap">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Type your message...">
+      <button class="chat-send-btn" id="chatSendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      const headerTl = gsap.timeline({ scrollTrigger: { trigger: "#services-header", start: "top 55%", toggleActions: "play none none reverse" } });
+      headerTl.from("#services-header .deco-line", { y: 20, opacity: 0, duration: 0.6, ease: "power2.out" })
+        .from("#services-title", { y: 40, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.3")
+        .from("#services-subtitle", { y: 20, opacity: 0, duration: 0.6, ease: "power2.out" }, "-=0.5");
+      gsap.from("#consultation-cta", { y: 80, opacity: 0, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: "#consultation-cta", start: "top 70%", toggleActions: "play none none reverse" } });
+    }
+
+    const tSlides = document.querySelectorAll('.t-slide-card'); const tDots = document.querySelectorAll('.t-dot');
+    const tPrevBtn = document.querySelector('.t-arrow-prev'); const tNextBtn = document.querySelector('.t-arrow-next');
+    let currentSlide = 0; let isAnimatingT = false;
+    tSlides.forEach((slide, index) => { if (index === 0) { gsap.set(slide, { x: '0%', rotateY: 0, opacity: 1, zIndex: 10 }); } else { gsap.set(slide, { x: '100%', rotateY: -45, opacity: 0, zIndex: 1 }); } });
+    function goToSlide(index) {
+      if (isAnimatingT) return; isAnimatingT = true;
+      if (index < 0) index = tSlides.length - 1; if (index >= tSlides.length) index = 0;
+      const current = tSlides[currentSlide]; const next = tSlides[index];
+      gsap.to(current, { x: '-100%', rotateY: 45, opacity: 0, duration: 0.8, ease: "power3.inOut", zIndex: 1 });
+      gsap.set(next, { x: '100%', rotateY: -45, opacity: 0, zIndex: 10 });
+      gsap.to(next, { x: '0%', rotateY: 0, opacity: 1, duration: 0.8, ease: "power3.inOut", onComplete: () => { current.classList.remove('active'); next.classList.add('active'); currentSlide = index; isAnimatingT = false; updateDots(); } });
+    }
+    function updateDots() { tDots.forEach((dot, i) => { if (i === currentSlide) dot.classList.add('active'); else dot.classList.remove('active'); }); }
+    if (tNextBtn) tNextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+    if (tPrevBtn) tPrevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+    tDots.forEach((dot, i) => { dot.addEventListener('click', () => { if (i !== currentSlide) goToSlide(i); }); });
+    let autoplayInterval = setInterval(() => goToSlide(currentSlide + 1), 6000);
+    const tWrapper = document.querySelector('.t-slider-wrapper');
+    if (tWrapper) { tWrapper.addEventListener('mouseenter', () => clearInterval(autoplayInterval)); tWrapper.addEventListener('mouseleave', () => { autoplayInterval = setInterval(() => goToSlide(currentSlide + 1), 6000); }); }
+    
+    const heroImages = [
+      'https://z-cdn-media.chatglm.cn/files/b1e4b1b2-ac69-4c8e-b4cb-1902a00864c2.png?auth_key=1885859560-296d8fda18c840e98dea4e0d7b18ce60-0-f14819d8a69e2ddfc58bd1d50192435f',
+      'https://z-cdn-media.chatglm.cn/files/0a116e28-128d-4ee8-86d4-813f81c5acb1.png?auth_key=1885859560-53d794b6345549acb3369ee60e036c39-0-31c300ea75a79217615c40dbd613ea79',
+      'https://z-cdn-media.chatglm.cn/files/39d048e8-179a-4bb9-96e3-76f501ba586a.png?auth_key=1885866986-f4758ac515564ec09b354c99d3ad0425-0-eed67012faecff71c8008d4089e73278', 
+      'https://z-cdn-media.chatglm.cn/files/ad20aef5-1e4c-4a3e-87da-3de113db2d05.png?auth_key=1885859560-bdbf28903cb947f49f2a9530610d39bb-0-8ec5156cda20011f4ae11a7f24e2f696'
+    ];
+
+    function initHeroSlider(containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = heroImages.map((src, i) => 
+        `<div class="hero-slide ${i === 0 ? 'active' : ''}" style="background-image: url('${src}')"></div>`
+      ).join('');
+    }
+
+    let currentHeroSlide = 0;
+    function cycleHeroSlides() {
+      currentHeroSlide = (currentHeroSlide + 1) % heroImages.length;
+      const desktopSlides = document.querySelectorAll('#desktopHeroSlider .hero-slide');
+      const mobileSlides = document.querySelectorAll('#mobileHeroSlider .hero-slide');
+      desktopSlides.forEach(s => s.classList.remove('active'));
+      mobileSlides.forEach(s => s.classList.remove('active'));
+      if(desktopSlides[currentHeroSlide]) desktopSlides[currentHeroSlide].classList.add('active');
+      if(mobileSlides[currentHeroSlide]) mobileSlides[currentHeroSlide].classList.add('active');
+    }
+
+    initHeroSlider('desktopHeroSlider');
+    initHeroSlider('mobileHeroSlider');
+    setInterval(cycleHeroSlides, 5000); 
+  });
+
+  window.addEventListener('load', () => {
+    setTimeout(() => { 
+      const preloader = document.getElementById('preloader');
+      if (preloader) preloader.classList.add('hidden');
+
+      setTimeout(() => { 
+        document.getElementById('heroBgWrapper').classList.add('loaded'); 
+        const heroImageFrame = document.getElementById('heroImageFrame');
+        if(heroImageFrame) heroImageFrame.classList.add('in-view');
+        const mobileHeroFrame = document.getElementById('mobileHeroFrame');
+        if(mobileHeroFrame) mobileHeroFrame.classList.add('in-view');
+        const mobileArtwork = document.querySelector('.invitation-artwork');
+        if(mobileArtwork) mobileArtwork.classList.add('loaded');
+      }, 1000); 
+      
+      if (typeof gsap !== 'undefined') {
+        gsap.set(".hero-text-reveal", { opacity: 0, y: 30 });
+        gsap.to(".hero-text-reveal", { opacity: 1, y: 0, duration: 1.5, stagger: 0.15, ease: "power3.out", delay: 0.2 });
+      } else {
+        document.querySelectorAll('.hero-text-reveal').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+      }
+    }, 1500);
+    
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      const timelineContainer = document.getElementById('timelineContainer');
+      const axisFill = document.getElementById('timelineAxisFill');
+      const orb = document.getElementById('timelineOrb');
+      const rows = document.querySelectorAll('.timeline-row');
+
+      if (timelineContainer && axisFill && rows.length) {
+        const containerRect = timelineContainer.getBoundingClientRect();
+        const positions = Array.from(rows).map(row => {
+            const dot = row.querySelector('.timeline-node-dot');
+            const dotRect = dot.getBoundingClientRect();
+            return (dotRect.top + dotRect.height / 2) - containerRect.top - 40;
+        });
+        
+        const endY = timelineContainer.offsetHeight - 80;
+        
+        gsap.set(orb, { opacity: 0, y: 0, xPercent: -50, top: 40 });
+        gsap.set(axisFill, { transformOrigin: "top center", scaleY: 0 });
+        
+        const tl = gsap.timeline({ 
+          scrollTrigger: { 
+            trigger: '#timelineContainer', 
+            start: 'top 60%', 
+            end: 'bottom 60%', 
+            scrub: 2, 
+            invalidateOnRefresh: true 
+          }
+        });
+        
+        let prevY = 0;
+        tl.to(orb, { opacity: 1, duration: 0.1 }, 0);
+        
+        rows.forEach((row, i) => {
+            const targetY = positions[i];
+            const dist = Math.max(1, targetY - prevY);
+            const dur = dist / 200;
+            
+            tl.to(orb, { y: targetY, duration: dur, ease: 'none', force3D: true });
+            tl.to(axisFill, { scaleY: targetY / endY, duration: dur, ease: 'none', force3D: true }, "<");
+            
+            tl.to({}, {
+                duration: 0.1,
+                onStart: () => row.classList.add('active'),
+                onReverseComplete: () => row.classList.remove('active')
+            });
+
+            prevY = targetY;
+        });
+        
+        const finalDist = Math.max(1, endY - prevY);
+        const finalDur = finalDist / 200;
+        tl.to(orb, { y: endY, duration: finalDur, ease: 'none', force3D: true });
+        tl.to(axisFill, { scaleY: 1, duration: finalDur, ease: 'none', force3D: true }, "<");
+        tl.to(orb, { opacity: 0, duration: 0.1 });
+      }
+      
+      ScrollTrigger.refresh();
+    }
+
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    if (typeof Lenis !== 'undefined' && !isMobile) {
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+      }
+      window.lenis = lenis;
+    }
+
+    // GSAP Smooth Scroll Integrations for Parallax, Navbar, and Progress Bar
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      const navbar = document.getElementById('navbar');
+      const scrollProgress = document.getElementById('scrollProgress');
+      const parallaxEls = document.querySelectorAll('.parallax');
+
+      // Smooth Parallax using GSAP
+      parallaxEls.forEach(el => {
+        const speed = parseFloat(el.dataset.speed || 0.1);
+        gsap.to(el, {
+          y: () => ScrollTrigger.maxScroll(window) * speed,
+          ease: "none",
+          scrollTrigger: {
+            trigger: document.body,
+            start: 0,
+            end: "max",
+            scrub: 1,
+            invalidateOnRefresh: true
+          }
+        });
+      });
+
+      // Smooth Scroll Progress Bar
+      gsap.to(scrollProgress, {
+        scaleX: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: document.body,
+          start: 0,
+          end: "max",
+          scrub: 0.3,
+          invalidateOnRefresh: true
+        }
+      });
+
+      // Smooth Navbar Background change
+      ScrollTrigger.create({
+        start: 'top -50',
+        end: 'max',
+        onUpdate: (self) => {
+          if (self.scroll() > 50) navbar.classList.add('nav-scrolled');
+          else navbar.classList.remove('nav-scrolled');
+        }
+      });
+    }
+  });
+
+  let mouseTicking = false;
+  const cursorDot = document.querySelector('.cursor-dot'); 
+  const cursorOutline = document.querySelector('.cursor-outline');
+  const updateMouse = (e) => {
+    if (!mouseTicking) {
+      window.requestAnimationFrame(() => {
+        const posX = e.clientX; const posY = e.clientY;
+        cursorDot.style.transform = `translate3d(${posX}px, ${posY}px, 0) translate(-50%, -50%)`;
+        cursorOutline.style.transform = `translate3d(${posX}px, ${posY}px, 0) translate(-50%, -50%)`;
+        mouseTicking = false;
+      });
+      mouseTicking = true;
+    }
+  };
+  window.addEventListener('mousemove', updateMouse);
+  
+  document.querySelectorAll('a, button, [data-magnetic], .faq-trigger, .gallery-arrow, .ba-frame, .chatbot-fab, .chat-close-btn, .quick-reply-btn, .chat-send-btn, .lang-btn').forEach(el => { 
+    el.addEventListener('mouseenter', () => { cursorOutline.classList.add('hover'); cursorDot.classList.add('hover'); }); 
+    el.addEventListener('mouseleave', () => { cursorOutline.classList.remove('hover'); cursorDot.classList.remove('hover'); }); 
+  });
+
+  let magTicking = false;
+  document.querySelectorAll('[data-magnetic]').forEach(btn => { 
+    btn.addEventListener('mousemove', (e) => {
+      if (!magTicking) {
+        requestAnimationFrame(() => {
+          const rect = btn.getBoundingClientRect(); const x = e.clientX - rect.left - rect.width / 2; const y = e.clientY - rect.top - rect.height / 2; 
+          btn.style.transform = `translate3d(${x * 0.2}px, ${y * 0.2}px, 0)`; 
+          magTicking = false;
+        });
+        magTicking = true;
+      }
+    }); 
+    btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate3d(0, 0, 0)'; }); 
+  });
+
+  let teamTicking = false;
+  document.querySelectorAll('.team-card-3d').forEach(card => {
+    let rect = null;
+    card.addEventListener('mouseenter', () => { rect = card.getBoundingClientRect(); });
+    card.addEventListener('mousemove', (e) => {
+      if (!rect) return;
+      if (!teamTicking) {
+        requestAnimationFrame(() => {
+          const x = e.clientX - rect.left; const y = e.clientY - rect.top;
+          const centerX = rect.width / 2; const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -8; const rotateY = ((x - centerX) / centerX) * 8;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+          card.style.boxShadow = `0 30px 60px rgba(14, 42, 38, 0.25), 0 0 30px rgba(201, 168, 118, 0.2)`;
+          card.style.setProperty('--mx', `${x}px`); card.style.setProperty('--my', `${y}px`);
+          teamTicking = false;
+        });
+        teamTicking = true;
+      }
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)'; card.style.boxShadow = '0 10px 30px rgba(14, 42, 38, 0.08)'; });
+  });
+
+  // Ultra-Smooth Premium FAQ Accordion using pure CSS (No JS Height Calculation = No Lag)
+  const faqCards = document.querySelectorAll('.faq-card');
+  faqCards.forEach(card => {
+    const trigger = card.querySelector('.faq-trigger');
+    trigger.addEventListener('click', () => {
+      const isActive = card.classList.contains('active');
+      // Close all other cards
+      faqCards.forEach(c => {
+        if (c !== card) {
+          c.classList.remove('active');
+        }
+      });
+      // Toggle current card
+      if (!isActive) {
+        card.classList.add('active');
+      } else {
+        card.classList.remove('active');
+      }
+    });
+  });
+
+  const menuToggle = document.getElementById('menuToggle'); 
+  const menuClose = document.getElementById('menuClose'); 
+  const mobileMenu = document.getElementById('mobileMenu'); 
+  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+
+  const openMenu = () => {
+    mobileMenu.classList.add('open');
+    mobileMenuOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden'; 
+    if (window.lenis) window.lenis.stop();
+  };
+  const closeMenu = () => {
+    mobileMenu.classList.remove('open');
+    mobileMenuOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    if (window.lenis) window.lenis.start();
+  };
+
+  menuToggle.addEventListener('click', openMenu); 
+  menuClose.addEventListener('click', closeMenu); 
+  mobileMenuOverlay.addEventListener('click', closeMenu);
+  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+  if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', closeMenu);
+
+  const observer = new IntersectionObserver((entries) => { 
+    entries.forEach(entry => { 
+      if (entry.isIntersecting) { entry.target.classList.add('in-view'); observer.unobserve(entry.target); } 
+    }); 
+  }, { threshold: 0.01, rootMargin: '0px 0px 0px 0px' });
+  document.querySelectorAll('.reveal, .reveal-text, .img-reveal, .footer-brand-huge').forEach(el => observer.observe(el));
+  
+  const counterObserver = new IntersectionObserver((entries) => { 
+    entries.forEach(entry => { 
+      if (entry.isIntersecting) { 
+        const el = entry.target; const target = parseInt(el.dataset.count); const duration = 2500; const start = performance.now(); 
+        const animate = (now) => { 
+          const elapsed = now - start; const progress = Math.min(elapsed / duration, 1); const eased = 1 - Math.pow(1 - progress, 3); 
+          const current = Math.floor(eased * target); el.textContent = current.toLocaleString() + (progress === 1 ? '+' : ''); 
+          if (progress < 1) requestAnimationFrame(animate); 
+        }; 
+        requestAnimationFrame(animate); counterObserver.unobserve(el); 
+      } 
+    }); 
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+  
+  const marqueeTracks = document.querySelectorAll('.marquee-track');
+  if (marqueeTracks.length) { 
+    const marqueeObserver = new IntersectionObserver((entries) => { 
+      entries.forEach(entry => { entry.target.classList.toggle('marquee-paused', !entry.isIntersecting); }); 
+    }, { threshold: 0 }); 
+    marqueeTracks.forEach(track => marqueeObserver.observe(track)); 
+  }
+
+  const navSections = document.querySelectorAll('section[ID]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${id}`) link.classList.add('active');
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  navSections.forEach(sec => navObserver.observe(sec));
+
+  const galleryImages = [
+    { src: 'https://z-cdn-media.chatglm.cn/files/1a103d8b-4725-4303-b94a-edcaa74ed358.png?auth_key=1885671034-2afd69ef154b471895e86332fba39c82-0-f7a8763b4fe2511e9c27b4229ccf7613' },
+    { src: 'https://z-cdn-media.chatglm.cn/files/832b674c-2b2c-4ccd-b34b-566e41dd8e10.png?auth_key=1885671034-faa687845b6e4cdc96d1a3491375a96b-0-2d3c09f2e6b87f82c9b25ce56e6815f9' },
+    { src: 'https://z-cdn-media.chatglm.cn/files/39477e11-5ace-4b4b-a6b5-0863684acce5.png?auth_key=1885671034-7c07bffe71a24d62b30242f1ba167534-0-64d98737f2abe7a28a548a7d30a18979' },
+    { src: 'https://z-cdn-media.chatglm.cn/files/42bc43ba-a06c-4c1b-a0c6-bc3d13851b35.png?auth_key=1885671034-0e465c1f03f64f4ca1835133d2967c77-0-608f454a70e783f8721c9d17654fdc0b' }
+  ];
+  let currentGalleryIndex = 0;
+  const baFrame = document.getElementById('baFrame'); 
+  const baAfter = document.getElementById('baAfter'); 
+  const baBefore = document.getElementById('baBefore'); 
+  const baHandle = document.getElementById('baHandle');
+  let isDragging = false;
+  baAfter.style.backgroundImage = `url('${galleryImages[0].src}')`;
+  baBefore.style.backgroundImage = `url('${galleryImages[0].src}')`;
+  function setSliderPos(x) { 
+    const rect = baFrame.getBoundingClientRect(); 
+    let pos = ((x - rect.left) / rect.width) * 100; 
+    pos = Math.max(0, Math.min(100, pos)); 
+    baHandle.style.left = pos + '%'; 
+    baBefore.style.clipPath = `inset(0 ${100 - pos}% 0 0)`; 
+  }
+  baFrame.addEventListener('mousedown', (e) => { isDragging = true; setSliderPos(e.clientX); });
+  window.addEventListener('mousemove', (e) => { if (isDragging) setSliderPos(e.clientX); });
+  window.addEventListener('mouseup', () => isDragging = false);
+  baFrame.addEventListener('touchstart', (e) => { isDragging = true; setSliderPos(e.touches[0].clientX); }, { passive: true });
+  baFrame.addEventListener('touchmove', (e) => { if (isDragging) setSliderPos(e.touches[0].clientX); }, { passive: true });
+  baFrame.addEventListener('touchend', () => isDragging = false);
+  function updateGallery(index, instant = false) {
+    currentGalleryIndex = (index + galleryImages.length) % galleryImages.length; 
+    const data = galleryImages[currentGalleryIndex];
+    gsap.to([baBefore, baAfter], { opacity: 0, duration: instant ? 0 : 0.4, ease: "power2.inOut", onComplete: () => { 
+      baBefore.style.backgroundImage = `url('${data.src}')`; 
+      baAfter.style.backgroundImage = `url('${data.src}')`; 
+      const rect = baFrame.getBoundingClientRect(); 
+      setSliderPos(rect.left + rect.width / 2); 
+      gsap.to([baBefore, baAfter], { opacity: 1, duration: 0.5, ease: "power2.out" }); 
+    } });
+  }
+  document.getElementById('galleryNext').addEventListener('click', () => updateGallery(currentGalleryIndex + 1));
+  document.getElementById('galleryPrev').addEventListener('click', () => updateGallery(currentGalleryIndex - 1));
+  
+  const toast = document.getElementById('toast'); 
+  const toastMsg = document.getElementById('toastMsg');
+  function showToast(msg) { toastMsg.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 4000); }
+
+  const chatbotFab = document.getElementById('chatbotFab'); 
+  const chatWindow = document.getElementById('chatWindow'); 
+  const chatCloseBtn = document.getElementById('chatCloseBtn');
+  const chatBody = document.getElementById('chatBody'); 
+  const chatInput = document.getElementById('chatInput'); 
+  const chatSendBtn = document.getElementById('chatSendBtn'); 
+  const quickRepliesContainer = document.getElementById('quickReplies');
+  let currentLang = 'en';
+  
+  const responses = {
+    emergency: { en: "I understand you are in pain. Please call our 24/7 emergency line right away at +1 (555) 911-0000 so we can see you today.", bn: "আমি বুঝতে পেরেছি যে আপনি খুব কষ্টে আছেন। অনুগ্রহ করে এখনই আমাদের ২৪/৭ ইমার্জেন্সি লাইনে +1 (555) 911-0000 নম্বরে কল করুন, যাতে আমরা আজই আপনাকে দেখতে পারি।" },
+    greeting: { en: "Assalamu Alaikum! Welcome to Lumire Dental Studio. I'm your AI assistant. I can tell you about our services, pricing, expert team, or help you book an appointment. How can I assist you today?", bn: "আসসালামু আলাইকুম! লুমিরে ডেন্টাল স্টুডিওতে স্বাগতম। আমি আপনার এআই অ্যাসিস্ট্যান্ট। আমি আমাদের সার্ভিস, দাম, বিশেষজ্ঞ টিম সম্পর্কে তথ্য দিতে পারি বা অ্যাপয়েন্টমেন্ট বুক করতে সাহায্য করতে পারি। আজ আমি কীভাবে আপনাকে সাহায্য করতে পারি?" },
+    salam_reply: { en: "Walaikum Assalam! How can I help you with your smile today?", bn: "ওয়ালাইকুম আসসালাম! আজ আপনার হাসি কিভাবে সুন্দর করতে পারি?" },
+    booking: { en: "I'd be happy to help you book! You can call us at +1 (555) 123-4567 for the fastest booking, or scroll down to the 'Visit Us' section to send us a message.", bn: "আমি আপনাকে বুকিং করতে সাহায্য করতে পারি! দ্রুত বুকিংয়ের জন্য আমাদের +1 (555) 123-4567 নম্বরে কল করতে পারেন, অথবা নিচের 'Visit Us' সেকশনে গিয়ে আমাদের মেসেজ পাঠাতে পারেন।" },
+    about: { en: "Lumire is a boutique dental studio founded in 2009 by Dr. Elena Voss. We blend the calm of a spa, precision of a lab, and warmth of a familiar face. We've transformed over 12,000 smiles with a 98% satisfaction rate!", bn: "লুমিরে ২০০৯ সালে ডাঃ এলেনা ভস দ্বারা প্রতিষ্ঠিত একটি বুটিক ডেন্টাল স্টুডিও। আমরা স্পার শান্তি, ল্যাবের নিখুঁত প্রযুক্তি এবং পরিবারের আপনজনের উষ্ণতা একত্র করেছি। আমরা ৯৮% সন্তুষ্টির সাথে ১২,০০০+ হাসি পরিবর্তন করেছি!" },
+    why_lumire: { en: "At Lumire, we provide Artisan Craftsmanship (shade-matched by master ceramists), Cutting-Edge Tech (like 3D CBCT imaging and same-day CEREC crowns), Spa-Like Comfort (aromatherapy, noise-canceling headphones), and Transparent Pricing.", bn: "লুমিরে আমরা হস্তশিল্পের মতো নিখুঁত কাজ, অত্যাধুনিক প্রযুক্তি (যেমন 3D CBCT), স্পার মতো আরাম (অ্যারোমাথেরাপি, হেডফোন), এবং স্বচ্ছ মূল্য নির্ধারণ নিশ্চিত করি।" },
+    team: { en: "Our expert team includes Dr. Alex (Cosmetic, 18yrs), Dr. Devin (Implants, 12yrs), Dr. David Smith (Orthodontist, 10yrs), and Dr. Chorok (Pediatric, 8yrs). Would you like to book with one of them?", bn: "আমাদের বিশেষজ্ঞ টিমে আছেন ডাঃ অ্যালেক্স (কসমেটিক, ১৮ বছর), ডাঃ ডেভিন (ইমপ্লান্ট, ১২ বছর), ডাঃ ডেভিড স্মিথ (অর্থোডন্টিস্ট, ১০ বছর), এবং ডাঃ চোরোক (পেডিয়াট্রিক, ৮ বছর)। তাদের কারো সাথে বুকিং করতে চান?" },
+    insurance: { en: "We're in-network with Delta Dental, Cigna, Aetna, MetLife, and Guardian. We also offer CareCredit financing and an in-house membership plan for uninsured patients!", bn: "আমরা Delta Dental, Cigna, Aetna, MetLife, এবং Guardian-এর নেটওয়ার্কে আছি। আমরা CareCredit ফাইন্যান্সিং এবং ইন-হাউস মেম্বারশিপ প্ল্যানও অফার করি!" },
+    faq_anxiety: { en: "Absolutely! We specialize in treating dental anxiety. We offer sedation options, noise-canceling headphones, weighted blankets, and a judgment-free environment. You're in control every step of the way.", bn: "অবশ্যই! আমরা ডেন্টাল ফোবিয়া দূর করতে বিশেষজ্ঞ। আমরা সেডেশন, নয়েজ-ক্যান্সেলিং হেডফোন, ওজন কম্বল এবং একটি নির্ভয় পরিবেশ অফার করি। পুরো সময় আপনি নিয়ন্ত্রণে থাকবেন।" },
+    faq_makeover: { en: "A Lumire Smile Makeover typically takes 3 visits over 4 weeks: consultation, preparation, and final placement. We'll give you a clear timeline during your visit.", bn: "লুমিরে স্মাইল মেকওভার সাধারণত ৪ সপ্তাহে ৩ বার ভিজিটে সম্পন্ন হয়: কনসালটেশন, প্রস্তুতি এবং ফাইনাল প্লেসমেন্ট।" },
+    faq_kids: { en: "Yes! We love seeing little ones. We have a playful, calm pediatric environment with iPad ceilings and treasure chests. We recommend the first visit around age 1.", bn: "হ্যাঁ! আমরা বাচ্চাদের খুব পছন্দ করি। আমাদের পেডিয়াট্রিক সেকশনে আইপ্যাড সিলিং এবং ট্রেজার চেস্ট আছে। প্রথম ভিজিট ১ বছর বয়সে করার পরামর্শ দেওয়া হয়।" },
+    services: { en: "We offer Teeth Whitening (from $299), General Dentistry ($99), Dental Implants ($2,400), Invisalign ($3,800), Cosmetic Dentistry ($350), Root Canals ($900), TMJ Therapy ($650), and 24/7 Emergency Care. Which one would you like to know more about?", bn: "আমরা টিথ হোয়াইটেনিং ($299 থেকে), জেনারেল ডেন্টিস্ট্রি ($99), ডেন্টাল ইমপ্লান্ট ($2,400), ইনভিসালাইন ($3,800), কসমেটিক ডেন্টিস্ট্রি ($350), রুট ক্যানেল ($900), TMJ থেরাপি ($650) এবং ২৪/৭ ইমার্জেন্সি কেয়ার দিয়ে থাকি। কোনটি সম্পর্কে জানতে চান?" },
+    pricing_whitening: { en: "Teeth whitening starts from $299. Final cost depends on consultation. Book a visit?", bn: "টিথ হোয়াইটেনিং $299 থেকে শুরু। চূড়ান্ত খরচ কনসালটেশনের উপর নির্ভর করে। বুকিং করতে চান?" },
+    pricing_implant: { en: "Dental implants start from $2,400. Final cost depends on consultation. Book a visit?", bn: "ডেন্টাল ইমপ্লান্ট $2,400 থেকে শুরু। চূড়ান্ত খরচ কনসালটেশনের উপর নির্ভর করে। বুকিং করতে চান?" },
+    pricing_invisalign: { en: "Orthodontics & Invisalign start from $3,800. Book a visit?", bn: "অর্থোডন্টিকস ও ইনভিসালাইন $3,800 থেকে শুরু। বুকিং করতে চান?" },
+    pricing_general_dentistry: { en: "General dentistry starts from $99. Book a visit?", bn: "জেনারেল ডেন্টিস্ট্রি $99 থেকে শুরু। বুকিং করতে চান?" },
+    pricing_cosmetic: { en: "Cosmetic dentistry starts from $350. Book a visit?", bn: "কসমেটিক ডেন্টিস্ট্রি $350 থেকে শুরু। বুকিং করতে চান?" },
+    pricing_root_canal: { en: "Root canal therapy starts from $900. Book a visit?", bn: "রুট ক্যানেল থেরাপি $900 থেকে শুরু। বুকিং করতে চান?" },
+    pricing_tmj: { en: "TMJ & Sleep Therapy starts from $650. Book a visit?", bn: "TMJ ও স্লিপ থেরাপি $650 থেকে শুরু। বুকিং করতে চান?" },
+    hours: { en: "We're open Mon-Thu 8AM-6PM, Fri 8AM-4PM, and Sat 9AM-2PM. We are closed on Sundays.", bn: "আমরা সোম-বৃহঃ ৮AM-৬PM, শুক্র ৮AM-৪PM, এবং শনি ৯AM-২PM খোলা থাকি। রবিবার বন্ধ থাকি।" },
+    location: { en: "We're located at 128 Aurora Avenue, Suite 200, San Francisco, CA 94103. You can find the map in the 'Visit Us' section!", bn: "আমরা ১২৮ অরোরা অ্যাভিনিউ, সুইট ২০০, সান ফ্রান্সিসকো, CA 94103 এ অবস্থিত। পেজের নিচে 'Visit Us' সেকশনে ম্যাপ দেখতে পারেন!" },
+    contact: { en: "You can call us at +1 (555) 123-4567 or email hello@lumire.dental.", bn: "আমাদের +1 (555) 123-4567 নম্বরে কল করতে পারেন বা hello@lumire.dental এ ইমেইল করতে পারেন।" },
+    general_problem: { en: "Oh, so sad to hear about your problem. No problem sir, please contact with us at +1 (555) 123-4567. We will try our best to remove your problem, Insha'Allah.", bn: "ওহ, আপনার সমস্যার কথা শুনে খুব খারাপ লাগছে। কোনো সমস্যা নেই স্যার, অনুগ্রহ করে আমাদের সাথে +1 (555) 123-4567 নম্বরে যোগাযোগ করুন। ইনশাআল্লাহ আমরা আপনার সমস্যার সমাধান করার চেষ্টা করব।" },
+    human: { en: "Of course! Please call us at +1 (555) 123-4567 or email hello@lumire.dental and our team will take great care of you directly.", bn: "অবশ্যই! অনুগ্রহ করে আমাদের +1 (555) 123-4567 নম্বরে কল করুন বা hello@lumire.dental এ ইমেইল করুন, আমাদের টিম সরাসরি আপনাকে সাহায্য করবে।" },
+    off_topic: { en: "Hmm, that's a bit outside my expertise as a dental assistant, but I'm happy to help with anything about Lumire! If it's something urgent, you can always reach our team at +1 (555) 123-4567.", bn: "এটি একজন ডেন্টাল অ্যাসিস্ট্যান্ট হিসেবে আমার বিষয় বহির্ভূত, তবে লুমিরে সম্পর্কে যেকোনো বিষয়ে আমি সাহায্য করতে পারি! জরুরি কিছু থাকলে আমাদের টিমের সাথে +1 (555) 123-4567 নম্বরে যোগাযোগ করতে পারেন।" },
+    fallback: { en: "I didn't quite catch that, but I'm here to help! I can assist with booking, pricing, or hours. For anything else, please contact us at +1 (555) 123-4567 or hello@lumire.dental.", bn: "আমি আপনার কথাটি ঠিক বুঝতে পারিনি, তবে আমি সাহায্য করতে প্রস্তুত! আমি বুকিং, দাম বা সময়সূচি সম্পর্কে তথ্য দিতে পারি। অন্য কিছুর জন্য অনুগ্রহ করে +1 (555) 123-4567 নম্বরে যোগাযোগ করুন বা hello@lumire.dental এ ইমেইল করুন।" },
+    lang_switch: { en: "Language switched to English.", bn: "ভাষা বাংলায় পরিবর্তিত হয়েছে।" }
+  };
+
+  const quickRepliesConfig = [
+    { en: "Services", bn: "সার্ভিস", msg_en: "What services do you offer?", msg_bn: "আপনাদের কি কি সার্ভিস আছে?" },
+    { en: "Pricing", bn: "খরচ", msg_en: "How much is teeth whitening?", msg_bn: "হোয়াইটেনিং এর দাম কত?" },
+    { en: "Hours", bn: "সময়সূচি", msg_en: "What are your hours?", msg_bn: "আপনাদের সময়সূচি কী?" }
+  ];
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    document.getElementById('langEn').classList.toggle('active-lang', lang === 'en');
+    document.getElementById('langBn').classList.toggle('active-lang', lang === 'bn');
+    document.getElementById('chatInput').placeholder = lang === 'en' ? "Type your message..." : "আপনার বার্তা লিখুন...";
+    const container = document.getElementById('quickReplies'); container.innerHTML = '';
+    quickRepliesConfig.forEach(item => { 
+      const btn = document.createElement('button'); 
+      btn.className = 'quick-reply-btn'; 
+      btn.innerText = lang === 'en' ? item.en : item.bn; 
+      btn.setAttribute('data-msg', lang === 'en' ? item.msg_en : item.msg_bn); 
+      container.appendChild(btn); 
+    });
+    addMessage(responses.lang_switch[lang], 'system');
+  }
+
+  function addMessage(text, sender) { 
+    const msgDiv = document.createElement('div'); 
+    msgDiv.classList.add('chat-msg', sender); 
+    msgDiv.innerHTML = text.replace(/\n/g, '<br>'); 
+    chatBody.appendChild(msgDiv); 
+    chatBody.scrollTop = chatBody.scrollHeight; 
+  }
+
+  function showTypingIndicator() { 
+    const typingDiv = document.createElement('div'); 
+    typingDiv.classList.add('typing-indicator'); 
+    typingDiv.id = 'typingIndicator'; 
+    typingDiv.innerHTML = '<span></span><span></span><span></span>'; 
+    chatBody.appendChild(typingDiv); 
+    chatBody.scrollTop = chatBody.scrollHeight; 
+  }
+
+  function hideTypingIndicator() { 
+    const typingDiv = document.getElementById('typingIndicator'); 
+    if (typingDiv) typingDiv.remove(); 
+  }
+
+  function getBotResponse(msg) {
+    const lowerMsg = msg.toLowerCase();
+    if (['salam', 'assalam', 'assalamu', 'assalamualaikum', 'walaikum', 'salaam', 'সালাম', 'আসসালামু', 'ওয়ালাইকুম'].some(k => lowerMsg.includes(k))) return responses.salam_reply[currentLang];
+    if (['severe pain', 'emergency', 'broken', 'swelling', 'bleeding', 'trauma', 'killing me', 'urgent', 'ব্যথা', 'ইমার্জেন্সি', 'দাঁত ভাঙা'].some(k => lowerMsg.includes(k))) return responses.emergency[currentLang];
+    if (['book', 'appointment', 'schedule', 'visit', 'বুকিং', 'অ্যাপয়েন্টমেন্ট', 'সময় লাগবে'].some(k => lowerMsg.includes(k))) return responses.booking[currentLang];
+    if (['founded', 'history', 'about', 'who are you', 'elena', '2009', 'কে', 'কখন', 'সম্পর্কে', 'লুমিরে কি'].some(k => lowerMsg.includes(k))) return responses.about[currentLang];
+    if (['why', 'feature', 'special', 'anxiety', 'spa', 'comfort', 'technology', 'ceramic', 'কেন', 'বিশেষত্ব', 'সুবিধা', 'নার্ভাস', 'ভয়'].some(k => lowerMsg.includes(k))) {
+      if (lowerMsg.includes('anxiety') || lowerMsg.includes('scared') || lowerMsg.includes('ভয়') || lowerMsg.includes('নার্ভাস')) return responses.faq_anxiety[currentLang];
+      return responses.why_lumire[currentLang];
+    }
+    if (['team', 'doctor', 'dentist', 'who works', 'specialist', 'ডাক্তার', 'টিম', 'কে আছে', 'চিকিৎসক'].some(k => lowerMsg.includes(k))) return responses.team[currentLang];
+    if (['cigna', 'delta', 'aetna', 'metlife', 'guardian', 'insurance', 'network', 'carecredit', 'finance', 'ইনস্যুরেন্স', 'কার্ড চলে', 'টাকা'].some(k => lowerMsg.includes(k))) return responses.insurance[currentLang];
+    if (['hour', 'open', 'time', 'timing', 'সময়', 'খোলা থাকে', 'কখন খোলে'].some(k => lowerMsg.includes(k))) return responses.hours[currentLang];
+    if (['where', 'location', 'address', 'map', 'কোথায়', 'অ্যাড্রেস', 'ঠিকানা'].some(k => lowerMsg.includes(k))) return responses.location[currentLang];
+    if (['email', 'contact', 'phone', 'যোগাযোগ', 'ফোন', 'মেইল'].some(k => lowerMsg.includes(k))) return responses.contact[currentLang];
+    if (['children', 'kids', 'pediatric', 'baby', 'বাচ্চা', 'শিশু'].some(k => lowerMsg.includes(k))) return responses.faq_kids[currentLang];
+    if (['makeover', 'veneers', 'how long', 'duration', 'মেকওভার', 'কতদিন', 'সময় লাগে'].some(k => lowerMsg.includes(k))) return responses.faq_makeover[currentLang];
+    let isPricing = ['cost', 'price', 'how much', 'pricing', 'fee', 'দাম', 'কত', 'খরচ', 'ফি'].some(k => lowerMsg.includes(k));
+    let isService = ['service', 'services', 'treatment', 'offer', 'সার্ভিস', 'চিকিৎসা', 'কি কি করেন', 'কি দেন'].some(k => lowerMsg.includes(k));
+    if (isPricing || isService) {
+      if (lowerMsg.includes('whiten') || lowerMsg.includes('হোয়াইটেনিং')) return responses.pricing_whitening[currentLang];
+      if (lowerMsg.includes('implant') || lowerMsg.includes('ইমপ্লান্ট')) return responses.pricing_implant[currentLang];
+      if (lowerMsg.includes('invisalign') || lowerMsg.includes('braces') || lowerMsg.includes('orthodontic') || lowerMsg.includes('ইনভিসালাইন') || lowerMsg.includes('ব্রেসেস')) return responses.pricing_invisalign[currentLang];
+      if (lowerMsg.includes('general') || lowerMsg.includes('cleaning') || lowerMsg.includes('checkup') || lowerMsg.includes('চেকআপ') || lowerMsg.includes('ক্লিনিং')) return responses.pricing_general_dentistry[currentLang];
+      if (lowerMsg.includes('cosmetic') || lowerMsg.includes('veneer') || lowerMsg.includes('কসমেটিক') || lowerMsg.includes('ভেনিয়ার')) return responses.pricing_cosmetic[currentLang];
+      if (lowerMsg.includes('root canal') || lowerMsg.includes('রুট ক্যানেল')) return responses.pricing_root_canal[currentLang];
+      if (lowerMsg.includes('tmj') || lowerMsg.includes('sleep') || lowerMsg.includes('স্লিপ')) return responses.pricing_tmj[currentLang];
+      return responses.services[currentLang];
+    }
+    if (['problem', 'problm', 'issue', 'সমস্যা', 'প্রবলেম'].some(k => lowerMsg.includes(k))) return responses.general_problem[currentLang];
+    if (['cavity', 'cavities', 'decay', 'toothache', 'দাঁত পচা', 'ক্যাভিটি', 'দাঁতে ক্ষত'].some(k => lowerMsg.includes(k))) return responses.general_problem[currentLang];
+    if (['gum pain', 'gums bleeding', 'gingivitis', 'মাড়ি ব্যথা', 'মাড়ি থেকে রক্ত', 'মাড়ি সমস্যা'].some(k => lowerMsg.includes(k))) return responses.general_problem[currentLang];
+    if (['yellow teeth', 'stain', 'discolor', 'দাঁত হলুদ', 'দাঁতের দাগ'].some(k => lowerMsg.includes(k))) return responses.pricing_whitening[currentLang];
+    if (['hi', 'hello', 'hey', 'hlo', 'yo', 'wassup', 'how are you', 'thanks', 'thank you', 'ty', 'lol', 'নমস্কার', 'হাই', 'ধন্যবাদ'].some(k => lowerMsg.includes(k)) && lowerMsg.length < 25) return responses.greeting[currentLang]; 
+    if (['real person', 'human', 'staff', 'manager', 'talk to', 'মানুষ', 'স্টাফ', 'কথা বলতে চাই'].some(k => lowerMsg.includes(k))) return responses.human[currentLang];
+    if (['upset', 'angry', 'bad', 'worst', 'terrible', 'complaint', 'খারাপ', 'ভালো লাগেনি'].some(k => lowerMsg.includes(k))) return responses.general_problem[currentLang];
+    if (['weather', 'code', 'coding', 'football', 'movie', 'president', 'আবহাওয়া', 'কোডিং', 'ক্রিকেট'].some(k => lowerMsg.includes(k))) return responses.off_topic[currentLang];
+    return responses.fallback[currentLang];
+  }
+
+  function handleUserMessage(msg) { 
+    addMessage(msg, 'user'); 
+    chatInput.value = ''; 
+    showTypingIndicator(); 
+    setTimeout(() => { 
+      hideTypingIndicator(); 
+      const res = getBotResponse(msg); 
+      addMessage(res, 'bot'); 
+    }, 800 + Math.random() * 500); 
+  }
+
+  chatbotFab.addEventListener('click', () => { 
+    chatWindow.classList.toggle('open'); 
+    if (chatWindow.classList.contains('open') && chatBody.children.length === 0) { 
+      setTimeout(() => { addMessage(responses.greeting[currentLang], 'bot'); }, 300); 
+    } 
+  });
+  
+  chatCloseBtn.addEventListener('click', () => chatWindow.classList.remove('open'));
+  chatSendBtn.addEventListener('click', () => { const msg = chatInput.value.trim(); if (msg) handleUserMessage(msg); });
+  chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { const msg = chatInput.value.trim(); if (msg) handleUserMessage(msg); } });
+  quickRepliesContainer.addEventListener('click', (e) => { 
+    if (e.target.classList.contains('quick-reply-btn')) { 
+      const msg = e.target.getAttribute('data-msg'); 
+      if (msg) handleUserMessage(msg); 
+    } 
+  });
+  
+  document.getElementById('langEn').addEventListener('click', () => setLanguage('en'));
+  document.getElementById('langBn').addEventListener('click', () => setLanguage('bn'));
+  setLanguage('en');
+</script>
+</body>
+</html>
